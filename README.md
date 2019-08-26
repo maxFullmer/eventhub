@@ -1,6 +1,7 @@
 # git-todo
 
-1)
+
+1) git turnt
 2) Smitty Werberjaegermanjensen
 3) suhh dude
 4)
