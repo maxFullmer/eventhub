@@ -7,9 +7,9 @@ app.use(express.json());
 
 const { SERVER_PORT, CONNECTION_STRING } = process.env;
 
-// mongoose.connect(CONNECTION_STRING, { useNewUrlParser: true, useCreateIndex: true }).then(() => {
-//   console.log('connection successful');
-// })
+mongoose.connect(CONNECTION_STRING, { useNewUrlParser: true, useCreateIndex: true }).then(() => {
+  console.log('connection successful');
+})
 
 const port = SERVER_PORT ;
 app.listen(port, () => console.log(`server up and running on ${port}`));
