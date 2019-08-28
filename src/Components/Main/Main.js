@@ -1,28 +1,18 @@
-<<<<<<< HEAD
 import React from 'react';
+import Calendar from 'react-calendar'
 
 export default class Main extends React.Component{
+    constructor(props){
+        super(props);
+        this.state = {
+            
+        }
+    }
     render(){
         return(
             <div>
-                This is the Main page
+                <Calendar />
             </div>
         )
     }
 }
-=======
-import React, { Component } from 'react'
-import './Main.scss';
-
-class Main extends Component {
-    render() {
-        return (
-            <div>
-                <h3> Main Page </h3>
-            </div>
-        )
-    }
-}
-
-export default Main;
->>>>>>> 0c306e223b1ef4fee582d5a227b5f78189f5211b
