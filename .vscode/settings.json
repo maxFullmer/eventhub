@@ -1,8 +1,11 @@
 {
     "cSpell.ignoreWords": [
         "bootstrapcdn",
+        "browserslist",
         "cdnjs",
         "cloudflare",
+        "crossorigin",
+        "eventhub",
         "finder",
         "maxcdn"
     ]
