@@ -31,3 +31,8 @@
     transform: rotate(360deg);
   }
 }
+
+#wrapped-map-container {
+  height: 400px;
+  width: 50%;
+}
