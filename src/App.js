@@ -2,9 +2,11 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import { withScriptjs, withGoogleMap } from 'react-google-maps'
 import Login from './Components/Login/Login';
+import LoginForm from './Components/Login/LoginForm';
 import Main from './Components/Main/Main';
 import Gmap from './Components/Gmap/Gmap';
 import User from './Components/User/User';
+import RegisterForm from './Components/Login/Registration/RegisterForm';
 import './App.css';
 // import { GOOGLE_MAPS_API_KEY } from '../.env';
 
@@ -16,7 +18,7 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <Route exact path="/" component={Login} />
+        <Route exact path="/" component={LoginForm} />
         <Route path="/main" component={Main} />
         <Route path="/map" render={(props) => (
           <div id="wrapped-map-container">
@@ -30,6 +32,7 @@ function App() {
           </div>
         )} />
         <Route path="/user" component={User} />
+        <Route path="/register" component={RegisterForm} />
       </Switch>
     </div>
   );
