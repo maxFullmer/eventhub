@@ -12,7 +12,7 @@ mongoose.connect(CONNECTION_STRING, { useNewUrlParser: true, useCreateIndex: tru
   console.log('connection successful');
 })
 
-app.get('/api/search', searchEvents)
+app.post('/api/search', searchEvents)
 
 const port = SERVER_PORT ;
 app.listen(port, () => console.log(`server up and running on ${port}`));
