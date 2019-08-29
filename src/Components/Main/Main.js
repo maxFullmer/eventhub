@@ -23,18 +23,20 @@ export default class Main extends React.Component{
     searchEvents(e){
         e.preventDefault();
         const { city, range } = this.state;
-        axios.post('/api/search', {city: city, dateBegin: range[0], dateEnd: range[1]})
-        .then( res => {
-            localStorage.setItem("results", res.data);
-            this.setState({
-                events: res.data
-            })
-        })
+        localStorage.setItem("city", city)
+        localStorage.setItem("dateBegin", range[0])
+        localStorage.setItem("dateEnd", range[1])
+        // axios.post('/api/search', {city: city, dateBegin: range[0], dateEnd: range[1]})
+        // .then( res => {
+        //     this.setState({
+        //         events: res.data
+        //     })
+        // })
+        this.props.history.push('/map');
+        
     }
 
     render(){
-        console.log(localStorage.getItem("results"))
-        console.log(this.state);
         return(
             <div className="main-page">
                 <input
