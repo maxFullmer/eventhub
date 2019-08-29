@@ -60,12 +60,6 @@ class LoginForm extends Component {
                                 <div className="form-group">
                                     <input type="submit" className="btnSubmit" onClick={() => this.login()} value="Login" />
                                 </div>
-                                <div className="form-group">
-                                    <Link to="/main" className="btnGuest">Continue As Guest</Link>
-                                </div>
-                                <div className="form-group">
-                                    <Link to="/register" className="btnRegister">Register Here</Link>
-                                </div>
                             </div>
                         </div>
                     </div>
