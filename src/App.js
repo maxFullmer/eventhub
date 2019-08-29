@@ -7,6 +7,7 @@ import Main from './Components/Main/Main';
 import Gmap from './Components/Gmap/Gmap';
 import User from './Components/User/User';
 import RegisterForm from './Components/Login/Registration/RegisterForm';
+import Landing from './Components/Landing/Landing';
 import './App.css';
 // import { GOOGLE_MAPS_API_KEY } from '../.env';
 
@@ -18,7 +19,9 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <Route exact path="/" component={LoginForm} />
+        <Route exact path="/" component={Landing} />
+        <Route path="/login" component={LoginForm} />
+        <Route path="/register" component={RegisterForm} />
         <Route path="/main" component={Main} />
         <Route path="/map" render={(props) => (
           <div id="wrapped-map-container">
@@ -32,7 +35,6 @@ function App() {
           </div>
         )} />
         <Route path="/user" component={User} />
-        <Route path="/register" component={RegisterForm} />
       </Switch>
     </div>
   );
