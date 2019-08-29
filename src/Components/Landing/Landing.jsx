@@ -7,9 +7,6 @@ const Landing = () => {
             <div className="Landing-Container">
                 <body>
                     <header className="header">
-                        <div className="logo-box">
-                            {/* <img src="./img/EventHub.png" alt="logo" className="logo" /> */}
-                        </div>
                         <div className="text-box">
                             <h1 className="heading-primary">
                                 <span className="heading-primary-main"> Eventhub </span>
