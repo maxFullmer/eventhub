@@ -15,7 +15,6 @@ export default function Gmap(props) {
                 {props.events.map(event => (
                     <Marker 
                         key={event._id}
-                        // position={{lat: event.lat, lng: eventLocation(event).lng}}
                         position={{lat: event.address.lat, lng: event.address.lng}}
                     />
                 ))}
