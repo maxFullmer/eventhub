@@ -1,7 +1,8 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
-const mongoose = require("mongoose");
+const mongoose = require("mongoose")
+const { searchEvents } = require("./controller/mainPageCTRL")
 // const axios = require("axios");
 const Geocodio = require('geocodio');
 
@@ -16,6 +17,9 @@ const geocodio = new Geocodio(geoConfig);
 mongoose.connect(CONNECTION_STRING, { useNewUrlParser: true, useCreateIndex: true }).then(() => {
   console.log('connection successful');
 })
+
+app.post('/api/search', searchEvents)
+
 
 // Request to Geocodio to get lat and long from address
 // should probably combine this with the post-new-event endpoint
@@ -35,5 +39,5 @@ app.post('/api/post-event', (req, res) => {
   // res.status(200).send('do we need to send anything back??? maybe the array of event ids for the user?')
 })
 
-const port = SERVER_PORT;
-app.listen(port, () => console.log(`server up and running on ${port}`));
+
+app.listen(SERVER_PORT, () => console.log(`server up and running on ${SERVER_PORT}`));
