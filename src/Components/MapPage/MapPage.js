@@ -1,5 +1,6 @@
 import React from 'react';
 import Gmap from './Gmap/Gmap'
+import List from './List/List';
 import { withScriptjs, withGoogleMap } from 'react-google-maps'
 import moment from "moment";
 import axios from "axios";
@@ -25,8 +26,18 @@ export default class MapPage extends React.Component{
         })
     })
    }
+
+   
+   
    render(){
-       console.log(this.state.events);
+       const {events} = this.state;
+        const listedEvents = events.map( event => {
+            return (
+                <ul class="accordion__list">
+                    <List decription={event.description} date={event.date} address={event.address} name={event.eventName}/>
+                </ul>
+            )
+        })
     return(
         <div id="wrapped-map-container">
             <WrappedMap 
