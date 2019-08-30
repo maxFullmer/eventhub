@@ -6,7 +6,7 @@ const eventSchema = mongoose.Schema({
         required: true
     },
     eventDate: {
-        type: Date,
+        type: String,
         required: true
     },
     description: {
@@ -36,7 +36,7 @@ const eventSchema = mongoose.Schema({
             type: Number,
             required: false
         },
-        lon: {
+        lng: {
             type: Number,
             required: false
         }
