@@ -1,7 +1,6 @@
 import React from 'react';
 import Gmap from './Gmap/Gmap'
 import List from './List/List';
-import moment from "moment";
 import axios from "axios";
 
 export default class MapPage extends React.Component{
