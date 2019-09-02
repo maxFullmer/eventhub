@@ -1,6 +1,5 @@
 import React from 'react';
 import DateRangePicker from '@wojtekmaj/react-daterange-picker';
-// import axios from 'axios';
 import "./Main.scss"
 
 export default class Main extends React.Component {
@@ -27,21 +26,7 @@ export default class Main extends React.Component {
         localStorage.setItem("dateBegin", range[0])
         localStorage.setItem("dateEnd", range[1])
 
-        // axios.post('/api/get-city-loc', {
-        //     city: localStorage.getItem("city")
-        // })
-        // .then(response => {
-        //     localStorage.setItem("latLng", response.data)
-        // })
-
-        // axios.post('/api/search', {city: city, dateBegin: range[0], dateEnd: range[1]})
-        // .then( res => {
-        //     this.setState({
-        //         events: res.data
-        //     })
-        // })
         this.props.history.push('/map');
-
     }
 
     render() {

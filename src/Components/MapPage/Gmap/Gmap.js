@@ -3,19 +3,17 @@ import { GoogleMap, Marker, withGoogleMap, withScriptjs } from 'react-google-map
 
 export default function Gmap(props) {
     console.log('event props in Gmap', props.events)
-    console.log('cityLatLng props in Gmap', props.cityLatLng);
 
     const MyMapComponent = withScriptjs(withGoogleMap(() => {
         return (
             <GoogleMap 
                 defaultZoom={10} 
-                defaultCenter={{lat: props.cityLatLng.lat, lng: props.cityLatLng.lng,}}
-                // defaultCenter={{'city coords from state or props' eventLocation()}}
+                defaultCenter={{lat: props.cityLatLng.lat, lng: props.cityLatLng.lng}}
             >
                 {props.events.map(event => (
                     <Marker 
                         key={event._id}
-                        position={{lat: event.address.lat, lng: event.address.lng}}
+                        position={{lat: event.lat, lng: event.lng}}
                     />
                 ))}
             </GoogleMap>
