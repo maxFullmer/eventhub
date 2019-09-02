@@ -9,14 +9,13 @@ const geocodio = new Geocodio(geoConfig);
 
 module.exports = {
     searchEvents: (req, res, next) => {
-        const {city, dateBegin, dateEnd} = req.body
-        Event.find( {$and: [
-            {eventDate: {$gte: dateBegin}},
-            {eventDate: {$lte: dateEnd}}
-            // {address : 
-            //     {city: city}
-            // }
-        ]}).then(events => {
+        const {city, eventDate} = req.body
+        console.log(city, eventDate)
+        Event.find( {$and:[
+            {eventDate: eventDate},
+            {city: city}
+        ]}
+        ).then(events => {
             res.status(200).send(events)
         }).catch(err => console.log(err))
     },

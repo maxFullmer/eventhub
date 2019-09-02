@@ -25,10 +25,9 @@ export default class MapPage extends React.Component{
 
     populateResults(){
         const city = localStorage.getItem("city");
-        const dateBegin = new Date(localStorage.getItem("dateBegin"));
-        const dateEnd = new Date(localStorage.getItem("dateEnd"));
-        console.log(dateBegin)
-        axios.post('/api/search', {city: city, dateBegin: dateBegin, dateEnd: dateEnd})
+        const date = localStorage.getItem("date");
+        console.log( typeof dateBegin)
+        axios.post('/api/search', {city: city, eventDate: date})
         .then( res => {
             this.setState({
                 events: res.data,
@@ -52,11 +51,30 @@ export default class MapPage extends React.Component{
                </div>
            )
        } else{
-
+           const {events} = this.state
+        const listedEvents = events.map(event => {
+            return (
+                <List 
+                name={event.eventName} 
+                date={event.eventDate}  
+                address={event.address}
+                description={event.description}
+                />
+            )
+        })
     return(
         <div>
         <Gmap events={this.state.events} latLng={this.state.latLng}/>
-       <List/>
+        <div>
+        <h1>EVENTS HAPPENING IN YOUR AREA</h1>
+            <div class="row">
+                <div class="col">
+                    <div class="tabs">
+                        {listedEvents}
+                    </div>
+                </div>
+            </div>
+        </div>
         </div>
     )}
    
