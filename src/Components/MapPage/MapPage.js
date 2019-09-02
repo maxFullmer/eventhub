@@ -52,9 +52,10 @@ export default class MapPage extends React.Component{
            )
        } else{
            const {events} = this.state
-        const listedEvents = events.map(event => {
+        const listedEvents = events.map((event, i) => {
             return (
-                <List 
+                <List
+                i={i+1} 
                 name={event.eventName} 
                 date={event.eventDate}  
                 address={event.address}
@@ -67,9 +68,9 @@ export default class MapPage extends React.Component{
         <Gmap events={this.state.events} latLng={this.state.latLng}/>
         <div>
         <h1>EVENTS HAPPENING IN YOUR AREA</h1>
-            <div class="row">
-                <div class="col">
-                    <div class="tabs">
+            <div className="row">
+                <div className="col">
+                    <div className="tabs">
                         {listedEvents}
                     </div>
                 </div>

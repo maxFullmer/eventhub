@@ -5,10 +5,10 @@ export default function List(props){
    const date = props.date
     return(
 
-      <div class="tab">
-        <input type="checkbox" id="chck1" />
-        <label class="tab-label" for="chck1">{props.name}</label>
-        <div class="tab-content">
+      <div className="tab">
+        <input type="checkbox" id={`chck${props.i}`} />
+        <label className="tab-label" for={`chck${props.i}`}>{props.name}</label>
+        <div className="tab-content">
           {props.address} <br/> {props.description}
         </div>
       </div>
