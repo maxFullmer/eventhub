@@ -1,5 +1,6 @@
 import React from 'react';
-import DateRangePicker from '@wojtekmaj/react-daterange-picker';
+import Calendar from 'react-calendar';
+import axios from 'axios';
 import "./Main.scss"
 
 export default class Main extends React.Component {
@@ -7,7 +8,7 @@ export default class Main extends React.Component {
         super(props);
         this.state = {
             city: "",
-            range: [new Date(), new Date()],
+            date: new Date(),
             events: [],
         }
         this.changeHandler = this.changeHandler.bind(this);
@@ -15,33 +16,33 @@ export default class Main extends React.Component {
 
     changeHandler(e) {
         this.setState({
-            range: e
+            date: e
         })
     }
 
     searchEvents(e) {
         e.preventDefault();
-        const { city, range } = this.state;
+        const { city, date } = this.state;
         localStorage.setItem("city", city)
-        localStorage.setItem("dateBegin", range[0])
-        localStorage.setItem("dateEnd", range[1])
-
+        localStorage.setItem("date", date)
         this.props.history.push('/map');
     }
 
     render() {
         return (
             <div className="main-page">
+            <div className="main-container">
                 <input
-                    name="city"
-                    value={this.state.city}
-                    onChange={(e) => { this.setState({ city: e.target.value }) }}
+                id="city-input"
+                value={this.state.city} 
+                onChange={(e) => {this.setState({ city: e.target.value})}}
                 />
-                <DateRangePicker
-                    onChange={this.changeHandler}
-                    value={this.state.range}
+                <Calendar
+                onChange={this.changeHandler}
+                value={this.state.date} 
                 />
-                <button onClick={(e) => this.searchEvents(e)}>Let's Party</button>
+                <button id="party-button" onClick={(e) => this.searchEvents(e)}>Let's Party</button>
+            </div>
             </div>
         )
     }

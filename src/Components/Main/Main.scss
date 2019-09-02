@@ -1,3 +1,62 @@
-.main {
-   
+.main-page {
+    position: fixed;
+    min-height: 110vh;
+    min-width: 110vw;
+    // right: 5vw;
+    // bottom: 5vh;
+    background-image:
+        linear-gradient(to right top,
+            rgba(0, 250, 0, 0.5),
+            rgba(0, 200, 0, 0.55),
+            rgba(0, 150, 0, 0.60),
+            rgba(0, 100, 0, 0.65),
+            rgba(0, 50, 0, 0.70)),
+        url('../Landing/img/DwntwnPHX.png');
+    .main-container {
+        position: absolute;
+        max-height: 100vh;
+        min-width: 80vw;
+        left: 10vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        #city-input {
+            display: flex;
+            position: absolute;
+            opacity: 1;
+            z-index: 1;
+            right: 55%;
+            top: 35vh;
+            padding: 1.5rem 2rem;
+            border-radius: 5rem;
+            border: none;
+            box-shadow: inset -5px 5px 7px rgba(0, 0, 0, 0.25);
+            font-size: 2rem;
+            font-weight: 550;
+        }
+        .react-calendar {
+            top: 15vh;
+            position: absolute;
+            left: 55%;
+            border-radius: 1rem;
+            font-size: 1.5rem;
+        }
+        #party-button {
+            display: flex;
+            position: relative;
+            top:70vh;
+            text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2rem;
+    font-size: 2rem;
+    font-weight: 550;
+    letter-spacing: 7px;
+    border: none;
+    cursor: pointer;
+    background-color: rgba(0, 100, 0, 0.7);
+    color: #edeae8;
+    padding: 1.5rem 10.25rem;
+        }
+        
+    }
 }
