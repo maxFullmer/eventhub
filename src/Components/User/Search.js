@@ -12,13 +12,10 @@ class Search extends Component {
 
     initialState() {
         return {
-            address: {
-                street_number: '',
-                street_name: '',
-                city: '',
-                state: '',
-                zip: ''
-            }
+            formatted_address: '',
+            city: '',
+            description: '',
+            event_name: ''
         }
     }
 
@@ -34,21 +31,26 @@ class Search extends Component {
 
     handlePlaceSelect() {
         let addressObject = this.autocomplete.getPlace()
-        console.log(addressObject);
-        let address = addressObject.address_components
+        
+        let address = addressObject.address_components;
+        let locality = address.filter(element => {
+            return element.types.includes("locality")
+        })[0].long_name;
+
+        console.log("autocomplete after selecting address: ", this.autocomplete);
+        let selectedAddress = this.autocomplete.gm_accessors_.place.Rc.i;
+
+
         this.setState({
-            street_number: address.short_name,
-            street_name: address.long_name,
-            city: address.filter(element => {
-                return element.types.includes("locality")
-            })[0].long_name,
-            state: address.short_name,
-            zip: address.short_name
+            formatted_address: selectedAddress,
+            city: locality
         })
     }
 
     render() {
-        console.log(this.state.city);
+        console.log('city: ', this.state.city);
+        console.log('formatted_address: ', this.state.formatted_address);
+
         return (
             <div className="form-group">
                 <h6>Search Address:</h6>
