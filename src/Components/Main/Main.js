@@ -3,8 +3,8 @@ import Calendar from 'react-calendar';
 import axios from 'axios';
 import "./Main.scss"
 
-export default class Main extends React.Component{
-    constructor(props){
+export default class Main extends React.Component {
+    constructor(props) {
         super(props);
         this.state = {
             city: "",
@@ -14,23 +14,23 @@ export default class Main extends React.Component{
         this.changeHandler = this.changeHandler.bind(this);
     }
 
-    changeHandler(e){
+    changeHandler(e) {
         this.setState({
             date: e
         })
     }
 
-    searchEvents(e){
+    searchEvents(e) {
         e.preventDefault();
         const { city, date } = this.state;
         localStorage.setItem("city", city)
         localStorage.setItem("date", date)
         this.props.history.push('/map');
-        
+
     }
 
-    render(){
-        return(
+    render() {
+        return (
             <div className="main-page">
             <div className="main-container">
                 <input
