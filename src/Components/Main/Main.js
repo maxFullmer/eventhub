@@ -9,7 +9,7 @@ export default class Main extends React.Component{
         this.state = {
             city: "",
             range: [new Date(), new Date()],
-            events: []
+            events: [],
         }
         this.changeHandler = this.changeHandler.bind(this);
     }
@@ -26,6 +26,14 @@ export default class Main extends React.Component{
         localStorage.setItem("city", city)
         localStorage.setItem("dateBegin", range[0])
         localStorage.setItem("dateEnd", range[1])
+        
+        // axios.post('/api/get-city-loc', {
+        //     city: localStorage.getItem("city")
+        // })
+        // .then(response => {
+        //     localStorage.setItem("latLng", response.data)
+        // })
+
         // axios.post('/api/search', {city: city, dateBegin: range[0], dateEnd: range[1]})
         // .then( res => {
         //     this.setState({
