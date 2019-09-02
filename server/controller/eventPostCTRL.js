@@ -8,8 +8,8 @@ const geocodio = new Geocodio(geoConfig);
 
 module.exports = {
     eventPost: (req, res, next) => {
-        const { streetAddress, city, state, zip } = req.body;
-        const address = `${streetAddress}, ${city}, ${state} ${zip}`;
+        const { address } = req.body;
+        // const address = `${streetAddress}, ${city}, ${state} ${zip}`;
       
         geocodio.get('geocode', {q: address}, function(err, response){
           if (err) throw err;

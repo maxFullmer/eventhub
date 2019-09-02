@@ -12,13 +12,15 @@ module.exports = {
         const {city, dateBegin, dateEnd} = req.body
         console.log(city, dateBegin, dateEnd)
 
-        Event.find( {$and: [
-            {eventDate: {$gte: dateBegin}},
-            {eventDate: {$lte: dateEnd}},
-            {address : 
-                {city: city}
-            }
-        ]}).then(events => {
+        Event.find(
+        //     {$and: [
+        //     {eventDate: {$gte: dateBegin}},
+        //     {eventDate: {$lte: dateEnd}},
+        //     {address : 
+        //         {city: city}
+        //     }
+        // ]}
+        ).then(events => {
             res.status(200).send(events)
         })
     },

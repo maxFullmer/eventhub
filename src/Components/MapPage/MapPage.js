@@ -8,7 +8,7 @@ export default class MapPage extends React.Component{
         super(props);
         this.state = {
             events: [],
-            latLng: {}
+            cityLatLng: {}
         }
         this.populateResults = this.populateResults.bind(this);
         this.getCityLoc = this.getCityLoc.bind(this);
@@ -33,13 +33,13 @@ export default class MapPage extends React.Component{
     getCityLoc() {
         axios.post('/api/get-city-loc', {city: localStorage.getItem("city")})
         .then(res => {
-            this.setState({latLng: res.data})
+            this.setState({cityLatLng: res.data})
         })
     }
 
    render(){
     return(
-        <Gmap events={this.state.events} latLng={this.state.latLng}/>
+        <Gmap events={this.state.events} cityLatLng={this.state.cityLatLng}/>
     )
    }
 }

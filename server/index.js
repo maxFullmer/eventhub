@@ -5,7 +5,7 @@ const mongoose = require("mongoose")
 const { searchEvents, getCityLatLng } = require("./controller/mainPageCTRL");
 const { eventPost } = require('./controller/eventPostCTRL');
 
-const { SERVER_PORT, CONNECTION_STRING, GOOGLE_MAPS_API_KEY } = process.env;
+const { SERVER_PORT, CONNECTION_STRING } = process.env;
 
 app.use(express.json());
 

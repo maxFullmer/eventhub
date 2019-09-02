@@ -1,6 +1,5 @@
 import React from 'react';
 import DateRangePicker from '@wojtekmaj/react-daterange-picker';
-import axios from 'axios';
 import "./Main.scss"
 
 export default class Main extends React.Component{

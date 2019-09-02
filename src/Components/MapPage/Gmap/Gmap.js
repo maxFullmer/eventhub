@@ -3,13 +3,13 @@ import { GoogleMap, Marker, withGoogleMap, withScriptjs } from 'react-google-map
 
 export default function Gmap(props) {
     console.log('event props in Gmap', props.events)
-    console.log('latLng props in Gmap', props.latLng);
+    console.log('cityLatLng props in Gmap', props.cityLatLng);
 
     const MyMapComponent = withScriptjs(withGoogleMap(() => {
         return (
             <GoogleMap 
                 defaultZoom={10} 
-                defaultCenter={{lat: props.latLng.lat, lng: props.latLng.lng,}}
+                defaultCenter={{lat: props.cityLatLng.lat, lng: props.cityLatLng.lng,}}
                 // defaultCenter={{'city coords from state or props' eventLocation()}}
             >
                 {props.events.map(event => (
@@ -25,8 +25,7 @@ export default function Gmap(props) {
     return (
         <div id="wrapped-map-container">
             <MyMapComponent
-                // googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${GOOGLE_MAPS_API_KEY}`}
-                googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places`}
+                googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`}
                 loadingElement={<div style={{height: "100%"}}/>}
                 containerElement={<div style={{height: "100%"}}/>}
                 mapElement={<div style={{height: "100%"}}/>} 
