@@ -63,9 +63,9 @@ export default class MapPage extends React.Component{
             )
         })
     return(
-        <div>
-        <Gmap events={this.state.events} cityLatLng={this.state.cityLatLng}/>
-        <div>
+        <div className="map-page">
+        <Gmap id="map" events={this.state.events} cityLatLng={this.state.cityLatLng}/>
+        <div id="event-list">
         <h1>EVENTS HAPPENING IN YOUR AREA</h1>
             <div className="row">
                 <div className="col">

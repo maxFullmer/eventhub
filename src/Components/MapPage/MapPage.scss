@@ -1,24 +1,35 @@
 $midnight: #2c3e50;
 $clouds: #ecf0f1;
 // General
-body {
-  color: $midnight;
-  background: $clouds;
-  padding: 0 1em 1em;
-}
-h1 {
-  margin: 0;
-  line-height: 2;
-  text-align: center;
-}
-h2 {
-  margin: 0 0 .5em;
-  font-weight: normal;
-}
-input {
-  position: absolute;
-  opacity: 0;
-  z-index: -1;
+// body {
+//   color: $midnight;
+//   background: $clouds;
+//   padding: 0 1em 1em;
+// }
+// h1 {
+//   margin: 0;
+//   line-height: 2;
+//   text-align: center;
+// }
+// h2 {
+//   margin: 0 0 .5em;
+//   font-weight: normal;
+// }
+// input {
+//   position: absolute;
+//   opacity: 0;
+//   z-index: -1;
+// }
+.map-page{
+    width: 80vw;
+    background-color: red;
+    #wrapped-map-container{
+        display: flex;
+        left: 50vw;
+    }
+    #event-list{
+        display: flex;
+    }
 }
 // Layout
 .row {
