@@ -1,2 +1,2 @@
-@import './Components/MapPage/Gmap/Gmap.scss';
-@import './Components/User/Search.scss'
+@import './Components/User/Search.scss';
+@import "./Components/MapPage/MapPage.scss";
