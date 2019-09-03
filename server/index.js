@@ -1,25 +1,52 @@
 require("dotenv").config();
 const express = require("express");
 const app = express();
+const session = require('express-session');
 const mongoose = require("mongoose")
 const { searchEvents, getCityLatLng } = require("./controller/mainPageCTRL");
-const { eventPost } = require('./controller/eventCTRL');
+const { postEvent, getUserEvents, editEvent } = require('./controller/eventCTRL');
+const { register, login, logout, userSession} = require('./controller/authCtrl')
 
-const { SERVER_PORT, CONNECTION_STRING } = process.env;
+const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
 
 app.use(express.json());
+app.use(express.urlencoded());
+// app.use(express.static( `${__dirname}/../build` ) );
 
 mongoose.connect(CONNECTION_STRING, { useNewUrlParser: true, useCreateIndex: true }).then(() => {
   console.log('connection successful');
-})
+});
 
-app.post('/api/search', searchEvents)
+app.use(session({
+  secret: SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+      maxAge: 1000 * 3600 * 24 * 14 // a fortnight (aka 2 weeks)
+  }
+}));
 
-app.post('/api/get-city-loc', getCityLatLng)
+// Authorization
+app.post('/api/register', register);
+app.post('/api/login', login);
+app.get('/api/logout', logout);
+app.get('/api/user_session', userSession);
 
-// Request to Geocodio to get lat and long from address
-// should probably combine this with the post-new-event endpoint
-app.post('/api/post-event', eventPost)
+// MAP PAGE/VIEW
+app.post('/api/search', searchEvents);
+app.post('/api/get-city-loc', getCityLatLng);
+
+// USER PAGE/VIEW
+app.get('/api/get-my-events/:user_id', getUserEvents);
+app.post('/api/post-event/:user_id', postEvent);
+app.put('/api/edit-event/:user_id', editEvent);
+
+// AUTO DELETE EXPIRED EVENTS
+const deleteInterval = (1000 * 60 * 60 * 24);
+setInterval(() => {
+  // get currentDate
+  // Use Mongo methods to delete events that are before the current Date
+}, deleteInterval)
 
 
 app.listen(SERVER_PORT, () => console.log(`server up and running on ${SERVER_PORT}`));

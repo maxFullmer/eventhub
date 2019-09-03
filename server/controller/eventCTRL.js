@@ -7,24 +7,50 @@ const geoConfig = {
 const geocodio = new Geocodio(geoConfig);
 
 module.exports = {
-    eventPost: (req, res, next) => {
-        const { formatted_address, city, description, event_name } = req.body;
-      
-        //send city to 
-        console.log("city: ", city)
-        console.log("description: ", description)
-        console.log("event name: ", event_name)
-        geocodio.get('geocode', {q: formatted_address}, function(err, response){
-          if (err) throw err;
-      
-          const resStrToJSON = JSON.parse(response);
-          const location = resStrToJSON.results[0].location;
-          // write MongoDB post-event method that adds the req.body formatted_address and city along with the lat-lng location 
-          //also include initial RSVP count of 0
-          
-          res.status(200).send(location);
-          // res.status(200).send('do we need to send anything back??? maybe the array of event ids for the user?')
+    getUserEvents: (req, res, next) => {
+      const { user_id } = req.params;
+
+      Event.findById(user_id).then(userEventIds => {
+        res.status(200).send(userEventIds)
+      })
+    },
+
+    postEvent: (req, res, next) => {
+      const { formatted_address, city, description, event_name, eventDate } = req.body;
+      const { user_id } = req.params;
+
+      geocodio.get('geocode', {q: formatted_address}, function(err, response){
+        if (err) throw err;
+    
+        const resStrToJSON = JSON.parse(response);
+        const location = resStrToJSON.results[0].location;
+
+        const event = new Event({
+          eventName: event_name,
+          eventDate: eventDate,
+          description: description,
+          address: formatted_address,
+          city: city,
+          lat: location.lat,
+          lng: location.lng,
+          rsvpCount: 0,
+          category: ""
+        })
+        
+        event.save((err) => {
+          Event.findById(user_id).then(userEventIds => {
+            res.status(200).send(userEventIds);
+          })
         });
-        // res.status(200).send('do we need to send anything back??? maybe the array of event ids for the user?')
-      }
+        
+      });
+    },
+
+    editEvent: (req, res, next) => {
+    //   const { user_id } = req.params;
+
+    //   Event.findById(user_id).then(userEventIds => {
+    //     res.status(200).send(userEventIds)
+    //   })
+    }
 }

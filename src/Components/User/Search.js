@@ -16,11 +16,14 @@ class Search extends Component {
             formatted_address: '',
             city: '',
             description: '',
-            event_name: ''
+            event_name: '',
+            user_id: null,
         }
     }
 
     componentDidMount() {
+        
+
         this.autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), {})
         this.autocomplete.setFields(['address_components']);
         this.autocomplete.addListener("place_changed", this.handlePlaceSelect)
@@ -51,8 +54,9 @@ class Search extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         const { formatted_address, city, description, event_name } = this.state;
+        const { user_id } = this.state;
 
-        axios.post('/api/post-event', {
+        axios.post(`/api/post-event/${user_id}`, {
             formatted_address: formatted_address,
             city: city,
             description: description,
