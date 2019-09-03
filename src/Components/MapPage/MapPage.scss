@@ -3,8 +3,12 @@
 
 $midnight: #42FBE5;
 $clouds: black;
-body{
+.map-background {
     padding:0;
+    z-index: -1;
+    width:100vw;
+    height: 100vh;
+    position: fixed;
     background: linear-gradient(306.86deg, rgba(255, 255, 255, 0) 27.35%, #42FBE5 65.61%), #BDFC0C;
 mix-blend-mode: normal;
 }
