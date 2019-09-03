@@ -1,34 +1,31 @@
-$midnight: #2c3e50;
-$clouds: #ecf0f1;
-// General
-// body {
-//   color: $midnight;
-//   background: $clouds;
-//   padding: 0 1em 1em;
-// }
-// h1 {
-//   margin: 0;
-//   line-height: 2;
-//   text-align: center;
-// }
-// h2 {
-//   margin: 0 0 .5em;
-//   font-weight: normal;
-// }
-// input {
-//   position: absolute;
-//   opacity: 0;
-//   z-index: -1;
-// }
+@import './Gmap/Gmap.scss';
+
+
+$midnight: #42FBE5;
+$clouds: black;
+body{
+    padding:0;
+    background: linear-gradient(306.86deg, rgba(255, 255, 255, 0) 27.35%, #42FBE5 65.61%), #BDFC0C;
+mix-blend-mode: normal;
+}
+h1{
+    font-weight:500;
+    font-size: 3rem;
+    top:10px;
+    position: relative;
+    color: black;
+}
 .map-page{
-    width: 80vw;
-    background-color: red;
-    #wrapped-map-container{
-        display: flex;
-        left: 50vw;
-    }
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
     #event-list{
         display: flex;
+        position: relative;
+        width: 40vw;
+        left: 15vw;
+        top: 10vh;
     }
 }
 // Layout
@@ -49,7 +46,7 @@ $clouds: #ecf0f1;
 }
 .tab {
   width: 100%;
-  color: white;
+  color: black;
   overflow: hidden;
   &-label {
     display: flex;
@@ -57,10 +54,11 @@ $clouds: #ecf0f1;
     padding: 1em;
     background: $midnight;
     font-weight: bold;
+    font-size: 1.3rem;
     cursor: pointer;
     /* Icon */
     &:hover {
-      background: darken($midnight, 10%);
+      background: darken($midnight, 15%);
     }
     &::after {
       content: "\276F";
@@ -73,7 +71,8 @@ $clouds: #ecf0f1;
   &-content {
     max-height: 0;
     padding: 0 1em;
-    color: $midnight;
+    color: black;
+    font-size: 1.3rem;
     background: white;
     transition: all .35s;
   }
@@ -104,4 +103,21 @@ input:checked {
   }
 }
 
+
+@media screen and (max-width:700px) {
+    .map-page{
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        #event-list{
+            display: flex;
+            position: relative;
+            width: 90vw;
+            left: 5vw;
+            top: 11vh;
+        }
+    }
+}
   

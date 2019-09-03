@@ -2,6 +2,7 @@ import React from 'react';
 import Gmap from './Gmap/Gmap'
 import List from './List/List';
 import axios from "axios";
+import "./MapPage.scss"
 
 export default class MapPage extends React.Component{
     constructor(props){
@@ -62,10 +63,11 @@ export default class MapPage extends React.Component{
             )
         })
     return(
+        <div>
+            <h1>Events in {localStorage.getItem("city")}</h1>
         <div className="map-page">
         <Gmap id="map" events={this.state.events} cityLatLng={this.state.cityLatLng}/>
         <div id="event-list">
-        <h1>EVENTS HAPPENING IN YOUR AREA</h1>
             <div className="row">
                 <div className="col">
                     <div className="tabs">
@@ -73,6 +75,7 @@ export default class MapPage extends React.Component{
                     </div>
                 </div>
             </div>
+        </div>
         </div>
         </div>
     )}
