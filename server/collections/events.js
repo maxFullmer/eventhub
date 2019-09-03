@@ -14,32 +14,20 @@ const eventSchema = mongoose.Schema({
         required: false
     },
     address: {
-        type: Object,
+        type: String,
         required: true,
-        street: {
-            type: String,
-            required: true
-        },
-        city: {
-            type: String,
-            required: true 
-        },
-        state: {
-            type: String,
-            required: true
-        },
-        zip: {
-            type: Number,
-            required: true
-        },
-        lat: {
-            type: Number,
-            required: false
-        },
-        lng: {
-            type: Number,
-            required: false
-        }
+    },
+    city: {
+        type: String,
+        required: true,
+    },
+    lat: {
+        type: Number,
+        required: true,
+    },
+    lng: {
+        type: Number,
+        required: true,
     },
     rsvpCount: {
         type: Number,
