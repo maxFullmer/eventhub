@@ -2,7 +2,7 @@ import React from 'react';
 import './List.scss';
 
 export default function List(props){
-   const date = props.date
+  //  const date = props.date;
     return(
 
       <div className="tab">

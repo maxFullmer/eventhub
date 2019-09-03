@@ -1,5 +1,2 @@
-
-#wrapped-map-container {
-  height: 400px;
-  width: 50%;
-}
+@import './Components/MapPage/Gmap/Gmap.scss';
+@import './Components/User/Search.scss'

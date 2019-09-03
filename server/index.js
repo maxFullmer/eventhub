@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose")
 const { searchEvents, getCityLatLng } = require("./controller/mainPageCTRL");
-const { eventPost } = require('./controller/eventPostCTRL');
+const { eventPost } = require('./controller/eventCTRL');
 
 const { SERVER_PORT, CONNECTION_STRING } = process.env;
 
