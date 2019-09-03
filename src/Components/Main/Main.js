@@ -1,6 +1,6 @@
 import React from 'react';
 import Calendar from 'react-calendar';
-import axios from 'axios';
+// import axios from 'axios';
 import "./Main.scss"
 
 export default class Main extends React.Component {
