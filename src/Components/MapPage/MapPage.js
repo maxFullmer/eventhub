@@ -63,7 +63,7 @@ export default class MapPage extends React.Component{
             )
         })
     return(
-        <div>
+        <div className='map-background'>
             <h1>Events in {localStorage.getItem("city")}</h1>
         <div className="map-page">
         <Gmap id="map" events={this.state.events} cityLatLng={this.state.cityLatLng}/>
