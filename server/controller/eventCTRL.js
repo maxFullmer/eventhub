@@ -1,3 +1,6 @@
+const User = require('../collections/users');
+const Event = require('../collections/events');
+const mongoose = require('mongoose');
 const Geocodio = require('geocodio');
 const { GEOCODIO_API_KEY } = process.env;
 
@@ -7,24 +10,81 @@ const geoConfig = {
 const geocodio = new Geocodio(geoConfig);
 
 module.exports = {
-    eventPost: (req, res, next) => {
-        const { formatted_address, city, description, event_name } = req.body;
-      
-        //send city to 
-        console.log("city: ", city)
-        console.log("description: ", description)
-        console.log("event name: ", event_name)
-        geocodio.get('geocode', {q: formatted_address}, function(err, response){
+  getUserEvents: (req, res, next) => {
+    const { userEvents } = req.params;
+
+    let eventInfo = [];
+
+    for (let i = 0; i < userEvents.length; i++) {
+      eventInfo.push(
+          Event.findOne({_id: userEvents[i]})
+        )
+    }
+    res.status(200).send(eventInfo)
+  },
+
+  postEvent: (req, res, next) => {
+    const { formatted_address, city, description, event_name, eventDate, user_id } = req.body;
+
+    geocodio.get('geocode', {q: formatted_address}, function(err, response){
+      if (err) throw err;
+  
+      const resStrToJSON = JSON.parse(response);
+      const location = resStrToJSON.results[0].location;
+
+      const event = new Event({
+        eventName: event_name,
+        eventDate: eventDate,
+        description: description,
+        address: formatted_address,
+        city: city,
+        lat: location.lat,
+        lng: location.lng,
+        rsvpCount: 0,
+        category: ""
+      });
+
+      event.save((err) => {
           if (err) throw err;
+
+          let event_id = event._id;
+          console.log('event id: ', event_id)
+          console.log('user_id: ', mongoose.Types.ObjectId(user_id))
+
+          User.findOne({_id: mongoose.Types.ObjectId(user_id)}).then((foundUser) => {
+            foundUser.userEvents.push(event_id);
+            foundUser.save((err) => {
+              if (err) throw err;
+            })
+          })           
+        })
+    
+      res.sendStatus(200);
+    });
+  },
+
+  editEvent: (req, res, next) => {
+    const { formatted_address, city, description, event_name, eventDate, event_id } = req.body;
+
+    geocodio.get('geocode', {q: formatted_address}, function(err, response) {
+      if (err) throw err;
+  
+      const resStrToJSON = JSON.parse(response);
+      const location = resStrToJSON.results[0].location;
+
+      Event.findOneAndUpdate({_id: event_id}, {
+        eventName: event_name,
+        eventDate: eventDate,
+        description: description,
+        address: formatted_address,
+        city: city,
+        lat: location.lat,
+        lng: location.lng,
+        rsvpCount: 0,
+        category: ""
+      });
       
-          const resStrToJSON = JSON.parse(response);
-          const location = resStrToJSON.results[0].location;
-          // write MongoDB post-event method that adds the req.body formatted_address and city along with the lat-lng location 
-          //also include initial RSVP count of 0
-          
-          res.status(200).send(location);
-          // res.status(200).send('do we need to send anything back??? maybe the array of event ids for the user?')
-        });
-        // res.status(200).send('do we need to send anything back??? maybe the array of event ids for the user?')
-      }
+      res.status(200).send()
+    });
+  }
 }

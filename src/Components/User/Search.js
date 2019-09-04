@@ -16,11 +16,19 @@ class Search extends Component {
             formatted_address: '',
             city: '',
             description: '',
-            event_name: ''
+            event_name: '',
+            user_id: null,
         }
     }
 
     componentDidMount() {
+        axios.get('/api/user_session')
+        .then((response) => {
+            this.setState({
+                user_id: response.user_id
+            })
+        })
+
         this.autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), {})
         this.autocomplete.setFields(['address_components']);
         this.autocomplete.addListener("place_changed", this.handlePlaceSelect)
@@ -51,15 +59,24 @@ class Search extends Component {
     handleSubmit = (event) => {
         event.preventDefault();
         const { formatted_address, city, description, event_name } = this.state;
+        const { user_id } = this.state;
 
-        axios.post('/api/post-event', {
+        axios.post(`/api/post-event`, {
             formatted_address: formatted_address,
             city: city,
             description: description,
-            event_name: event_name
+            event_name: event_name,
+            user_id: user_id
         })
         .then(response => console.log(response))
         .catch(error => console.log(error));
+    }
+
+    logout = () => {
+        axios.get('/api/logout')
+        .then(response => {
+            this.props.history.push("/")
+        })
     }
 
     render() {
