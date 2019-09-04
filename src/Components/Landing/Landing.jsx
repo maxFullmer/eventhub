@@ -1,25 +1,30 @@
- import React from 'react';
- import { Link } from 'react-router-dom';
- import './Landing.css';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import './Landing.scss';
 
 const Landing = () => {
-        return (
-            <div className="Landing-Container">
-                <body>
-                    <header className="header">
-                        <div className="text-box">
-                            <h1 className="heading-primary">
-                                <span className="heading-primary-main"> Eventhub </span>
-                                <span className="heading-primary-sub"> Search, Find, Attend.</span>
-                                <span className="heading-primary-sub2"> It's That Easy... </span>
-                            </h1>
-                            <Link to='/login' className="btn btn-login btn-animated"> Login </Link>
-                            <Link to='/register' className="btn btn-register btn-animated"> Register </Link>
-                            <Link to='/main' className="btn btn-guest btn-animated"> Continue As Guest </Link>
-                        </div>
-                    </header>
-                </body>
-            </div>
-        );
-    }
+  return (
+    <div className="landing-page">
+
+      <header className="header">
+
+        <div className="header__text-box">
+          <div className="header-container">
+          <h1 className="heading-primary">
+            <span className="heading-primary--main">Eventhub</span>
+            <span className="heading-primary--sub">Search, Find, Attend. It's that easy...</span>
+          </h1>
+          </div>
+          <div className="button-container">
+          <Link to='/login' id="landing-button-1">Login</Link>
+          <Link to='/register' id="landing-button-2">Register</Link>
+          <Link to='/main' id="landing-button-3">Continue As Guest</Link>
+          </div>
+
+        </div>
+      </header>
+    </div>
+  );
+}
+
 export default Landing;
