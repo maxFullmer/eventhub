@@ -1,0 +1,46 @@
+// /* COLOR SCHEME FOR WEBSITE */
+// /*
+//  #05386B  
+//  rgb(5, 56, 107)
+//  #379683  
+//  rgb(55, 150, 131)
+//  #5CDB95  
+//  rgb(92, 219, 149)
+//  #8EE4AF  
+//  rgb(142, 228, 175)
+//  #EDF5E1 
+//  rgb(237, 245, 225)
+//  */
+
+// COLORS
+$color-primary: rgb(5, 56, 107);
+$color-primary-2: rgba(5, 56, 107, 0.9);
+$color-primary-light:rgba(5, 56, 107, 0.55);
+$color-primary-dark: rgba(5, 56, 107, 0.75);
+
+$color-secondary: rgb(55, 150, 131);
+$color-secondary-light: rgba(55, 150, 131, 0.55);
+$color-secondary-dark: rgba(55, 150, 131, 0.75);
+
+$color-tertiary: rgb(92, 219, 149);
+$color-tertiary-light:rgba(92, 219, 149, 0.55);
+$color-tertiary-dark: rgba(92, 219, 149, 0.75);
+
+$color-four: rgb(142, 228, 175);
+$color-four-light: rgba(142, 228, 175, 0.55);
+$color-four-dark: rgba(142, 228, 175, 0.75);
+
+$color-grey-light-1: rgb(220, 220, 220);
+$color-grey-light-2: rgb(211, 211, 211);
+
+$color-grey-dark: rgb(192, 192, 192);
+$color-grey-dark-2: rgb(169, 169, 169);
+$color-grey-dark-3: rgb(128, 128, 128);
+
+$color-white: rgb(255, 228, 196);
+$color-black: rgb(92, 92, 92);
+
+
+// // FONT
+$default-font-size: 1.575rem;
+$button-font-size: 1.2rem;
