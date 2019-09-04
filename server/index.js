@@ -42,7 +42,7 @@ app.post('/api/post-event', postEvent);
 app.put('/api/edit-event', editEvent);
 
 // AUTO DELETE EXPIRED EVENTS
-const deleteInterval = (1000 * 60 * 60 * 24);
+const deleteInterval = (1000 * 60 * 60 * 24); // daily
 setInterval(() => {
   // get currentDate
   // Use Mongo methods to delete events that are before the current Date

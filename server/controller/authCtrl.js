@@ -10,56 +10,68 @@ module.exports = {
         const saltRounds = 12;
         const {username, password, email} = req.body;
 
-        bcrypt.hash(password, saltRounds)
-        .then((hashedPassword) => {
-            return User.save({
-                username: username,
-                password: hashedPassword,
-                email: email,
-                userEvents: []
-            });
-        })
-        .then(() => {
-            req.session.user = {
-                username: username,
-                user_id: User.findOne(username).then((user) => {return user._id}).catch((err) => {console.log(err)}),
-                userEvents: []
+        
+        User.find({email: email}).limit(1).then((foundUser) => {
+            if (foundUser.length) {
+                res.status(409).send('User already exists')
+            } else {
+                bcrypt.hash(password, saltRounds)
+                .then((hashedPassword) => {
+                    const user = new User({
+                            username: username,
+                            password: hashedPassword,
+                            email: email,
+                            userEvents: []
+                    })
+
+                    user.save().then((userDocReturned) => {
+                        req.session.user = {
+                            username: username,
+                            user_id: userDocReturned._id,
+                            userEvents: []
+                        }
+                        console.log(req.session.user)
+                        res.send(req.session.user);
+                    })
+                    .catch((error) => {
+                        console.log("Error saving user: ", error);
+                        next();
+                    });
+                })
             }
-            res.send(req.session.user);
         })
-        .catch((error) => {
-            console.log("Error saving user: ", error);
-            next();
-        });
+
+        
     },
 
     login: (req, res, next) => {
         let { username, password } = req.body;
 
-        User.findOne(username)
-            .then((user) => {
-                return bcrypt.compare(password, user.password);
-            })
-            .then((samePassword) => {
-                console.log(samePassword)
-                if(!samePassword) {
-                    res.status(403).send();
-                }
-                req.session.user = {
-                    username: username,
-                    user_id: User.findOne(username).then((user) => {return user._id}).catch((err) => {console.log(err)}),
-                    userEvents: User.findOne(username).then((user) => {return user.userEvents}).catch((err) => {console.log(err)})
-                }
-                res.send(req.session.user);
-            })
-            .catch((error) => {
-                console.log("Error authenticating user: ", error);
-                next();
+        User.find({username: username}).limit(1)
+            .then(([user]) => {
+                bcrypt.compare(password, user.password)
+                .then((samePassword) => {
+                    if(!samePassword) {
+                        res.status(403).send("Who goes there");
+                    }
+
+                    req.session.user = {
+                        username: username,
+                        user_id: user._id,
+                        userEvents: user.userEvents
+                    }
+
+                    res.send(req.session.user);
+                    })
+                    .catch((error) => {
+                        console.log("Error authenticating user: ", error);
+                        next();
             });
+        })
     },
 
     logout: (req, res) => {
         req.session.destroy();
-        res.status(200).send([]);
+        res.sendStatus(200);
     }
 }

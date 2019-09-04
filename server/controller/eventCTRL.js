@@ -1,5 +1,6 @@
 const User = require('../collections/users');
 const Event = require('../collections/events');
+const mongoose = require('mongoose');
 const Geocodio = require('geocodio');
 const { GEOCODIO_API_KEY } = process.env;
 
@@ -30,20 +31,8 @@ module.exports = {
   
       const resStrToJSON = JSON.parse(response);
       const location = resStrToJSON.results[0].location;
-      
-      Event.insert({
-          eventName: event_name,
-          eventDate: eventDate,
-          description: description,
-          address: formatted_address,
-          city: city,
-          lat: location.lat,
-          lng: location.lng,
-          rsvpCount: 0,
-          category: ""
-      })
 
-      const event_id = Event.find({
+      const event = new Event({
         eventName: event_name,
         eventDate: eventDate,
         description: description,
@@ -53,12 +42,24 @@ module.exports = {
         lng: location.lng,
         rsvpCount: 0,
         category: ""
-      }, {_id: 1})
-      
-      // Goal: store the id from the event we just saved into the array of events in user
-      User.findOneAndUpdate({_id: user_id}, {userEvents: [...this.userEvents, event_id]});
+      });
+
+      event.save((err) => {
+          if (err) throw err;
+
+          let event_id = event._id;
+          console.log('event id: ', event_id)
+          console.log('user_id: ', mongoose.Types.ObjectId(user_id))
+
+          User.findOne({_id: mongoose.Types.ObjectId(user_id)}).then((foundUser) => {
+            foundUser.userEvents.push(event_id);
+            foundUser.save((err) => {
+              if (err) throw err;
+            })
+          })           
+        })
     
-      res.status(200).send()
+      res.sendStatus(200);
     });
   },
 
