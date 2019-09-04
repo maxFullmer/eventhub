@@ -121,7 +121,7 @@ class LoginForm extends Component {
                                     value={password}
                                 />
                             </div>
-                            <input type="Submit" value="Login" onClick={() => this.login()} className="btn btn-block" style={buttonStyle} />
+                            <input type="Submit" onClick={() => this.login()} className="btn btn-block" style={buttonStyle} />
                         </div>
                     </div>
                 </div>
