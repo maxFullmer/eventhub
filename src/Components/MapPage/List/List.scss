@@ -1,34 +1,44 @@
 $midnight: #2c3e50;
 $clouds: #ecf0f1;
 
-// General
-body {
+<<<<<<< HEAD
+// List Component General
+.tab {
   color: $midnight;
   background: $clouds;
 }
+=======
+// General
 
-h1 {
+>>>>>>> 884227a1d65ff2e2242e38d1f30fdd8e3ad3715a
+
+// MapPage h1
+.events {
   margin: 0;
   line-height: 2;
   text-align: center;
 }
 
-h2 {
-  margin: 0 0 .5em;
-  font-weight: normal;
-}
+<<<<<<< HEAD
+// h2 {
+//   margin: 0 0 .5em;
+//   font-weight: normal;
+// }
 
-input {
+.checkbox {
   position: absolute;
   opacity: 0;
   z-index: -1;
 }
+=======
+
+>>>>>>> 884227a1d65ff2e2242e38d1f30fdd8e3ad3715a
 
 // Layout
-.row {
+.map-page-row {
   display: flex;
 
-  .col {
+  .map-page-col {
     flex: 1;
 
     &:last-child {
