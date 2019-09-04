@@ -3,55 +3,65 @@
 
 $midnight: #42FBE5;
 $clouds: black;
+
 .map-background {
-    padding:0;
-    z-index: -1;
-    width:100vw;
-    height: 100vh;
-    position: fixed;
-    background: linear-gradient(306.86deg, rgba(255, 255, 255, 0) 27.35%, #42FBE5 65.61%), #BDFC0C;
-mix-blend-mode: normal;
+  padding: 0;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background: linear-gradient(306.86deg, rgba(255, 255, 255, 0) 27.35%, #42FBE5 65.61%), #BDFC0C;
+  mix-blend-mode: normal;
 }
-h1{
-    font-weight:500;
-    font-size: 3rem;
-    top:10px;
-    position: relative;
-    color: black;
+
+h1 {
+  font-weight: 500;
+  font-size: 3rem;
+  top: 10px;
+  position: relative;
+  color: black;
 }
-.map-page{
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
+
+.map-page {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+
+  #event-list {
     display: flex;
-    #event-list{
-        display: flex;
-        position: relative;
-        width: 40vw;
-        left: 15vw;
-        top: 10vh;
-    }
+    position: relative;
+    width: 40vw;
+    left: 15vw;
+    top: 10vh;
+  }
 }
+
 // Layout
 .row {
-  display:flex;
+  display: flex;
+
   .col {
-    flex:1;
+    flex: 1;
+
     &:last-child {
       margin-left: 1em;
     }
   }
 }
+
 /* Accordion styles */
 .tabs {
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 4px 4px -2px rgba(0,0,0,0.5);
+  box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.5);
 }
+
 .tab {
   width: 100%;
   color: black;
   overflow: hidden;
+
   &-label {
     display: flex;
     justify-content: space-between;
@@ -60,10 +70,12 @@ h1{
     font-weight: bold;
     font-size: 1.3rem;
     cursor: pointer;
+
     /* Icon */
     &:hover {
       background: darken($midnight, 15%);
     }
+
     &::after {
       content: "\276F";
       width: 1em;
@@ -72,6 +84,7 @@ h1{
       transition: all .35s;
     }
   }
+
   &-content {
     max-height: 0;
     padding: 0 1em;
@@ -80,6 +93,7 @@ h1{
     background: white;
     transition: all .35s;
   }
+
   &-close {
     display: flex;
     justify-content: flex-end;
@@ -87,6 +101,7 @@ h1{
     font-size: 0.75em;
     background: $midnight;
     cursor: pointer;
+
     &:hover {
       background: darken($midnight, 10%);
     }
@@ -95,13 +110,15 @@ h1{
 
 // :checked
 input:checked {
-  + .tab-label {
+  +.tab-label {
     background: darken($midnight, 10%);
+
     &::after {
       transform: rotate(90deg);
     }
   }
-  ~ .tab-content {
+
+  ~.tab-content {
     max-height: 100vh;
     padding: 1em;
   }
@@ -109,19 +126,19 @@ input:checked {
 
 
 @media screen and (max-width:700px) {
-    .map-page{
-        position: fixed;
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        #event-list{
-            display: flex;
-            position: relative;
-            width: 90vw;
-            left: 5vw;
-            top: 11vh;
-        }
+  .map-page {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    #event-list {
+      display: flex;
+      position: relative;
+      width: 90vw;
+      left: 5vw;
+      top: 11vh;
     }
+  }
 }
-  

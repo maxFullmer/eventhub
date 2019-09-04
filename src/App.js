@@ -8,6 +8,7 @@ import MapPage from './Components/MapPage/MapPage'
 import User from './Components/User/User';
 import RegisterForm from './Components/Login/Registration/RegisterForm';
 import Landing from './Components/Landing/Landing';
+import HamburgerMenu from './Components/HamburgerMenu/HamburgerMenu';
 import './App.css';
 // import { GOOGLE_MAPS_API_KEY } from '../.env';
 
@@ -18,6 +19,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
+      <HamburgerMenu />
       <Switch>
         <Route exact path="/" component={Landing} />
         <Route path="/login" component={LoginForm} />
