@@ -22,6 +22,7 @@ module.exports = {
         .then(() => {
             req.session.user = {
                 username: username,
+                user_id: User.findOne(username).then((user) => {return user._id}).catch((err) => {console.log(err)}),
                 userEvents: []
             }
             res.send(req.session.user);
@@ -46,7 +47,8 @@ module.exports = {
                 }
                 req.session.user = {
                     username: username,
-                    userEvents: User.findOne(username).then((userObj) => {return userObj.userEvents}).catch((err) => {console.log(err)})
+                    user_id: User.findOne(username).then((user) => {return user._id}).catch((err) => {console.log(err)}),
+                    userEvents: User.findOne(username).then((user) => {return user.userEvents}).catch((err) => {console.log(err)})
                 }
                 res.send(req.session.user);
             })

@@ -22,7 +22,12 @@ class Search extends Component {
     }
 
     componentDidMount() {
-        
+        axios.get('/api/user_session')
+        .then((response) => {
+            this.setState({
+                user_id: response.user_id
+            })
+        })
 
         this.autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), {})
         this.autocomplete.setFields(['address_components']);
@@ -56,14 +61,22 @@ class Search extends Component {
         const { formatted_address, city, description, event_name } = this.state;
         const { user_id } = this.state;
 
-        axios.post(`/api/post-event/${user_id}`, {
+        axios.post(`/api/post-event`, {
             formatted_address: formatted_address,
             city: city,
             description: description,
-            event_name: event_name
+            event_name: event_name,
+            user_id: user_id
         })
         .then(response => console.log(response))
         .catch(error => console.log(error));
+    }
+
+    logout = () => {
+        axios.get('/api/logout')
+        .then(response => {
+            this.props.history.push("/")
+        })
     }
 
     render() {
