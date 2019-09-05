@@ -26,7 +26,7 @@ module.exports = {
   },
 
   postEvent: (req, res, next) => {
-    const { formatted_address, city, description, event_name, eventDate, user_id } = req.body;
+    const { formatted_address, city, description, eventName, eventDate, user_id } = req.body;
 
     geocodio.get('geocode', {q: formatted_address}, function(err, response){
       if (err) throw err;
@@ -35,8 +35,8 @@ module.exports = {
       const location = resStrToJSON.results[0].location;
 
       const event = new Event({
-        eventName: event_name,
-        eventDate: eventDate,
+        eventName: eventName,
+        eventDate: new Date(eventDate),
         description: description,
         address: formatted_address,
         city: city,
