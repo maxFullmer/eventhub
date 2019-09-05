@@ -48,6 +48,13 @@ export default class User extends Component {
         })
     }
 
+    logout(){
+                axios.get('/api/logout')
+                    .then(response => {
+                        this.props.history.push("/")
+                        localStorage.setItem('accredited', 'false')
+                    })
+            }
 
     render() {
         console.log(this.state)
@@ -83,6 +90,7 @@ export default class User extends Component {
                     <div className="event-container">
                         {listedEvents}
                     </div>
+                    <button onClick={() => this.logout()}>Logout</button>
                 </div>
             )
         }
