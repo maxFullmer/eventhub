@@ -39,7 +39,7 @@ app.post('/api/get-city-loc', getCityLatLng);
 // USER PAGE/VIEW
 app.post('/api/get-my-events', getUserEvents);
 app.post('/api/post-event', postEvent);
-app.put('/api/cancel-event', cancelEvent);
+app.post('/api/cancel-event', cancelEvent);
 
 // AUTO DELETE EXPIRED EVENTS
 const deleteInterval = (1000 * 60 * 60 * 24); // daily

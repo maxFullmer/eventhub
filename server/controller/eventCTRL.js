@@ -66,7 +66,6 @@ module.exports = {
   cancelEvent: (req, res, next) => {
     const { event_id, user_id } = req.body;
 
-
     User.findOne({_id: mongoose.Types.ObjectId(user_id)}).then((foundUser) => {
       let event_index = foundUser.userEvents.indexOf(mongoose.Types.ObjectId(event_id));
       foundUser.userEvents.splice(event_index, 1);
@@ -76,12 +75,10 @@ module.exports = {
     });
          
     try {
-      console.log(Event.deleteOne({_id: mongoose.Types.ObjectId(event_id)}))
-      Event.deleteOne({_id: mongoose.Types.ObjectId(event_id)});
+      Event.deleteOne({_id: mongoose.Types.ObjectId(event_id)})
     } catch (err) {
       console.log(err)
     }
-    
 
     res.sendStatus(200)
   }
