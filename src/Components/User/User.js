@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Search from './Search';
 import List from '../MapPage/List/List';
 import { Link } from 'react-router-dom';
 import './User.scss';

@@ -1,6 +1,5 @@
 import React from 'react';
 import {Route, Redirect} from 'react-router-dom';
-import axios from 'axios';
 
 export default function PrivateRoute({ component: Component, ...rest }){
     var user = localStorage.getItem('accredited')
