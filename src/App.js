@@ -27,6 +27,7 @@ function App() {
         <Route path="/register" component={RegisterForm} />
         <PrivateRoute path="/user" component={User} />
         <Route path="/main" component={Main} />
+        <PrivateRoute path='/userform' component={UserForm} />
         <Route path="/map" component={MapPage} />
       </Switch>
     </div>

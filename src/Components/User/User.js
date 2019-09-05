@@ -17,17 +17,17 @@ export default class User extends Component {
         this.getUserSession = this.getUserSession.bind(this);
     }
 
-    componentDidMount(){
+    componentDidMount() {
         this.getUserSession();
         // this.getUserEvents();
     }
 
-    getUserSession(){
+    getUserSession() {
         axios.get('/api/user_session').then(res => {
             console.log("response: ", res);
             this.setState({
                 user: res.data,
-                loading:false
+                loading: false
             })
         })
         // .catch( (err) => {
@@ -39,8 +39,8 @@ export default class User extends Component {
         // })
     }
 
-    getUserEvents(){
-        axios.post(`/api/get-my-events`, {userEvents: this.state.user.userEvents}).then(res => {
+    getUserEvents() {
+        axios.post(`/api/get-my-events`, { userEvents: this.state.user.userEvents }).then(res => {
             console.log("itworked")
             this.setState({
                 events: res.data,
@@ -62,29 +62,29 @@ export default class User extends Component {
             const listedEvents = events.map((event, i) => {
                 return (
                     <div key={i}>
-                    <List
-                        i={i + 1}
-                        name={event.eventName}
-                        date={event.eventDate}
-                        address={event.address}
-                        description={event.description}
-                    />
-                    <span><button></button></span>
+                        <List
+                            i={i + 1}
+                            name={event.eventName}
+                            date={event.eventDate}
+                            address={event.address}
+                            description={event.description}
+                        />
+                        <span><button></button></span>
                     </div>
                 )
             })
-                return (
-                    <div className="user-page">
-                        <h1 id="user-name">{user.username}</h1>
-                        <Link to="/main">
-                            <button id="post-event">Create New Event</button>
-                        </Link>
-                        <button onClick={() => this.getUserEvents()}>Show My Events</button>
-                        <div className="event-container">
-                            {listedEvents}
-                        </div>
+            return (
+                <div className="user-page">
+                    <h1 id="user-name">{user.username}</h1>
+                    <Link to="/userform">
+                        <button id="post-event">Create New Event</button>
+                    </Link>
+                    <button onClick={() => this.getUserEvents()}>Show My Events</button>
+                    <div className="event-container">
+                        {listedEvents}
                     </div>
-                )
+                </div>
+            )
         }
     }
 };
