@@ -1,0 +1,31 @@
+#login-page {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-image:
+        linear-gradient(to right bottom,
+            rgba(92, 219, 149, 0.55),
+            rgba(142, 228, 175, 0.85),
+            rgba(5, 56, 107, 0.55),
+            rgba(55, 150, 131, 0.85),
+            rgba(92, 219, 149, 0.55),
+            rgba(5, 56, 107, 0.65),
+            rgba(142, 228, 175, 0.55),
+            rgba(55, 150, 131, 0.85),
+            rgba(5, 56, 107, 0.75)),
+        url(../Landing/img/DwntwnPHX.png);
+    background-size: cover;
+    background-position: top;
+    position: relative;
+}
+
+#login-card {
+    background-color: rgb(98, 98, 98);
+    color: whitesmoke;
+}
+
+.card-header {
+    background-color: rgb(5, 56, 107);
+}

@@ -1,16 +1,11 @@
 $midnight: #2c3e50;
 $clouds: #ecf0f1;
 
-<<<<<<< HEAD
 // List Component General
 .tab {
   color: $midnight;
   background: $clouds;
 }
-=======
-// General
-
->>>>>>> 884227a1d65ff2e2242e38d1f30fdd8e3ad3715a
 
 // MapPage h1
 .events {
@@ -19,20 +14,16 @@ $clouds: #ecf0f1;
   text-align: center;
 }
 
-<<<<<<< HEAD
-// h2 {
-//   margin: 0 0 .5em;
-//   font-weight: normal;
-// }
+h2 {
+  margin: 0 0 .5em;
+  font-weight: normal;
+}
 
 .checkbox {
   position: absolute;
   opacity: 0;
   z-index: -1;
 }
-=======
-
->>>>>>> 884227a1d65ff2e2242e38d1f30fdd8e3ad3715a
 
 // Layout
 .map-page-row {
