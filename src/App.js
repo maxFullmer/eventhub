@@ -3,8 +3,10 @@ import { Route, Switch } from 'react-router-dom';
 // import { withScriptjs, withGoogleMap } from 'react-google-maps'
 import Main from './Components/Main/Main';
 import MapPage from './Components/MapPage/MapPage'
-import User from './Components/User/User';
+import UserForm from './Components/User/UserForm';
+import User from './Components/User/User'
 import RegisterForm from './Components/Login/Registration/RegisterForm';
+import PrivateRoute from './Components/PrivateRoute';
 // import Landing from './Components/Landing/Landing';
 import LoginForm from './Components/Login/LoginForm';
 // import HamburgerMenu from './Components/HamburgerMenu/HamburgerMenu';
@@ -23,8 +25,9 @@ function App() {
         {/* <Route exact path="/" component={Landing} /> */}
         <Route exact path="/login" component={LoginForm} />
         <Route path="/register" component={RegisterForm} />
-        <Route path="/user" component={User} />
+        <PrivateRoute path="/user" component={User} />
         <Route path="/main" component={Main} />
+        <PrivateRoute path='/userform' component={UserForm} />
         <Route path="/map" component={MapPage} />
       </Switch>
     </div>
