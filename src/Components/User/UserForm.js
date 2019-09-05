@@ -12,6 +12,7 @@ class UserEventsForm extends React.Component {
         this.changeHandler = this.changeHandler.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handlePlaceSelect = this.handlePlaceSelect.bind(this);
+        this.getUserSession = this.getUserSession.bind(this);
         this.autocomplete = null;
     }
 
@@ -22,14 +23,25 @@ class UserEventsForm extends React.Component {
             description: '',
             formatted_address: '',
             city: '',
-            googleMapLink: ''
+            googleMapLink: '',
+            user: {}
         }
     }
 
     componentDidMount() {
         this.autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), {})
         this.autocomplete.setFields(['address_components']);
-        this.autocomplete.addListener("place_changed", this.handlePlaceSelect)
+        this.autocomplete.addListener("place_changed", this.handlePlaceSelect);
+        this.getUserSession();
+    }
+
+    getUserSession() {
+        axios.get('/api/user_session').then(res => {
+            console.log("response: ", res);
+            this.setState({
+                user: res.data,
+            })
+        })
     }
 
     handleChange(property, value) {
@@ -69,14 +81,16 @@ class UserEventsForm extends React.Component {
             eventDate,
             description,
             formatted_address,
-            city
+            city,
+            user
         } = this.state;
         axios.post(`/api/post-event`, {
             eventName: eventName,
             eventDate: eventDate,
             description: description,
             formatted_address: formatted_address,
-            city: city
+            city: city,
+            user_id: user.user_id
         })
             .then(response => console.log(response))
             .catch(error => console.log(error));
@@ -195,7 +209,7 @@ class UserEventsForm extends React.Component {
                                     />
                                 </div> */}
 
-                            <input type="Submit" onClick={() => this.handleSubmit()} className="btn btn-block" style={buttonStyle} />
+                            <input type="Submit" onClick={(event) => this.handleSubmit(event)} className="btn btn-block" style={buttonStyle} />
 
                         </div>
                     </div >
