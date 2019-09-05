@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 import './LoginForm.scss';
 
 class LoginForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            user_name: '',
-            password: '',
-            email: ''
+            email: '',
+            password: ''
         }
 
         this.login = this.login.bind(this);
@@ -26,15 +24,15 @@ class LoginForm extends Component {
 
     login(e) {
         // e.preventDefault();
-        const { user_name, email, password } = this.state;
-        axios.post('/auth/login', { user_name: user_name, email: email, password: password })
+        const { email, password } = this.state;
+        axios.post('/auth/login', { email: email, password: password })
             .then(res => {
                 console.log(res);
                 if (res.data.message) {
                     alert(res.data.message)
                 } else {
                     this.props.setLoginUser(res.data.user);
-                    this.props.history.push('/ProfilePage');
+                    this.props.history.push('/main');
                 }
             })
     }
@@ -46,100 +44,87 @@ class LoginForm extends Component {
     }
 
     render() {
-        const { user_name,
+        const {
             email,
             password } = this.state;
 
-        let styles = {
-            background: 'linear-gradient(0deg, rgba(130, 130, 130, 1) 0%, rgba(226, 62, 62, 1) 100%)'
+        const titleStyle = {
+            fontFamily: "'Lato', sans- serif",
+            textTransform: 'uppercase',
+            color: 'rgb(211, 211, 211)',
+            fontSize: '40px',
+            fontWeight: 700,
+            letterSpacing: '3px',
+            marginLeft: '35%'
         };
 
-        let style = {
-            background: 'lightgray'
+        const subTitleStyle = {
+            fontFamily: "'Lato', sans- serif",
+            fontSize: '28px',
+            color: 'rgb(211, 211, 211)',
+            marginBottom: '12px',
+            marginTop: '14px',
+            fontWeight: 700,
+            letterSpacing: '1px',
+            textTransform: 'uppercase'
         };
 
-        let titleTextStyles = {
-            fontFamily: "'Quicksand', sans-serif",
-            textDecoration: 'underline',
-            fontSize: '32px',
-            fontWeight: 700
+        const buttonStyle = {
+            background: 'rgb(5, 56, 107)',
+            color: 'whitesmoke',
+            letterSpacing: '1px',
+            fontSize: '22px',
+            fontWeight: 600,
+            fontFamily: "'Lato', sans- serif",
+            textTransform: 'uppercase',
+            borderRadius: '10rem',
+            width: '50%',
+            margin: '0 auto'
         };
 
-        let normalTextStyles = {
-            fontFamily: "'Quicksand', sans-serif",
-            fontSize: '20px',
-            fontWeight: 400
-        };
+        const inputStyle = {
+            fontSize: '24px',
+            marginBottom: '20px',
+            backgroundColor: 'rgb(211, 211, 211)'
+        }
 
-        let loginStyles = {
-            background: 'rgba(226,62,62,1)',
-            marginTop: '5px',
-            fontSize: '17px',
-            fontWeight: 800,
-            fontFamily: "'Quicksand', sans-serif"
-        };
-
-        let registerStyles = {
-            background: 'rgb(190, 190, 190)',
-            marginTop: '5px',
-            fontSize: '17px',
-            fontWeight: 800,
-            fontFamily: "'Quicksand', sans-serif"
-        };
+        const emailInputStyle = {
+            fontSize: '24px',
+            fontFamily: "'Lato', sans- serif",
+            backgroundColor: 'rgb(211, 211, 211)'
+        }
 
         return (
-            <div className='page' style={styles}>
-                {/* <section id="actions" class="py-4 mb-4 bg-dark"> */}
-                <div class="container" >
-                    <div class="row"></div>
-                </div>
-                {/* </section> */}
-                <section id="login">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-md-6 mx-auto">
-                                <div className="card" style={style}>
-                                    <div style={{}} className="card-header">
-                                        <h4 style={titleTextStyles}>Account Login</h4>
-                                    </div>
-                                    <div className="card-body">
+            <div id="login-page">
+                <div className="col-lg-6 mx-auto">
+                    <div id="login-card" className="card">
+                        <div className="card-header">
+                            <h4 style={titleStyle}>User Login</h4>
+                        </div>
+                        <div className="card-body">
 
-                                        <div className="form-group-small">
-                                            <label for="username" style={normalTextStyles}>Username</label>
-                                            <input
-                                                type="text"
-                                                className="form-control"
-                                                onChange={(e) => this.universalChangeHandler('user_name', e.target.value)}
-                                                value={user_name}
-                                            />
-                                        </div>
-                                        <div className="form-group-small">
-                                            <label for="email" style={normalTextStyles}>Email</label>
-                                            <input
-                                                type="email"
-                                                className="form-control"
-                                                onChange={(e) => this.universalChangeHandler('email', e.target.value)}
-                                                value={email}
-                                            />
-                                        </div>
-                                        <div className="form-group-small">
-                                            <label for="password" style={normalTextStyles}>Password</label>
-                                            <input
-                                                type="password"
-                                                className="form-control"
-                                                onChange={(e) => this.universalChangeHandler('password', e.target.value)}
-                                                value={password}
-                                            />
-                                        </div>
-                                        <input type="Submit" value="Login" onClick={() => this.login()} className="btn btn-block" style={loginStyles} />
-
-                                        <Link to='/Register'><button className='btn btn-block' style={registerStyles}> Register </button></Link>
-                                    </div>
-                                </div>
+                            <div className="form-group-lg">
+                                <label className="email-label" for="email" style={subTitleStyle}>Email:</label>
+                                <input style={emailInputStyle}
+                                    type="email"
+                                    className="form-control"
+                                    onChange={(e) => this.universalChangeHandler('email', e.target.value)}
+                                    value={email}
+                                />
                             </div>
+                            <div className="form-group-lg">
+                                <label className="password-label" for="password" style={subTitleStyle}>Password:</label>
+                                <input style={inputStyle}
+                                    type="password"
+                                    className="form-control"
+                                    onChange={(e) => this.universalChangeHandler('password', e.target.value)}
+                                    value={password}
+                                />
+                            </div>
+                            <input type="Submit" onClick={() => this.login()} className="btn btn-block" style={buttonStyle} />
                         </div>
                     </div>
-                </section>
+                </div>
             </div>
         );
     }

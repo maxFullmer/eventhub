@@ -1,14 +1,13 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 // import { withScriptjs, withGoogleMap } from 'react-google-maps'
-// import Login from './Components/Login/Login';
 import Main from './Components/Main/Main';
 import MapPage from './Components/MapPage/MapPage'
 import UserForm from './Components/User/UserForm';
 import RegisterForm from './Components/Login/Registration/RegisterForm';
-import Landing from './Components/Landing/Landing';
+// import Landing from './Components/Landing/Landing';
 import LoginForm from './Components/Login/LoginForm';
-import HamburgerMenu from './Components/HamburgerMenu/HamburgerMenu';
+// import HamburgerMenu from './Components/HamburgerMenu/HamburgerMenu';
 import './App.css';
 // import { GOOGLE_MAPS_API_KEY } from '../.env';
 
