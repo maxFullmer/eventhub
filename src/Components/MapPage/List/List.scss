@@ -1,10 +1,14 @@
 $midnight: #2c3e50;
 $clouds: #ecf0f1;
 
-// General
+// List Component General
+.tab {
+  color: $midnight;
+  background: $clouds;
+}
 
-
-h1 {
+// MapPage h1
+.events {
   margin: 0;
   line-height: 2;
   text-align: center;
@@ -15,17 +19,17 @@ h2 {
   font-weight: normal;
 }
 
-input {
+.checkbox {
   position: absolute;
   opacity: 0;
   z-index: -1;
 }
 
 // Layout
-.row {
+.map-page-row {
   display: flex;
 
-  .col {
+  .map-page-col {
     flex: 1;
 
     &:last-child {

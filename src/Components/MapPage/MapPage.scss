@@ -14,7 +14,7 @@ $clouds: black;
   mix-blend-mode: normal;
 }
 
-h1 {
+.events {
   font-weight: 500;
   font-size: 3rem;
   top: 10px;
@@ -38,10 +38,10 @@ h1 {
 }
 
 // Layout
-.row {
+.amp-page-row {
   display: flex;
 
-  .col {
+  .map-page-col {
     flex: 1;
 
     &:last-child {
