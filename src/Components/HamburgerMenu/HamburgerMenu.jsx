@@ -1,8 +1,16 @@
 // import React from 'react';
 // import { Link } from 'react-router-dom';
+// import axios from 'axios';
 // import './HamburgerMenu.scss';
 
+
 // const HamburgerMenu = () => {
+//     const logout = () => {
+//         axios.get('/api/logout')
+//             .then(response => {
+//                 this.props.history.push("/")
+//             })
+//     }
 //     return (
 //         <div className="navigation">
 

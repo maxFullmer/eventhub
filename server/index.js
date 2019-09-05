@@ -4,7 +4,7 @@ const app = express();
 const session = require('express-session');
 const mongoose = require("mongoose")
 const { searchEvents, getCityLatLng } = require("./controller/mainPageCTRL");
-const { postEvent, getUserEvents, editEvent } = require('./controller/eventCTRL');
+const { postEvent, getUserEvents, cancelEvent } = require('./controller/eventCTRL');
 const { register, login, logout, userSession} = require('./controller/authCtrl')
 
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
@@ -39,7 +39,7 @@ app.post('/api/get-city-loc', getCityLatLng);
 // USER PAGE/VIEW
 app.post('/api/get-my-events', getUserEvents);
 app.post('/api/post-event', postEvent);
-// app.put('/api/edit-event', editEvent);
+app.put('/api/cancel-event', cancelEvent);
 
 // AUTO DELETE EXPIRED EVENTS
 const deleteInterval = (1000 * 60 * 60 * 24); // daily
