@@ -26,7 +26,7 @@ module.exports = {
 
                     user.save().then((userDocReturned) => {
                         req.session.user = {
-                            username: username,
+                            username: userDocReturned.username,
                             user_id: userDocReturned._id,
                             userEvents: []
                         }

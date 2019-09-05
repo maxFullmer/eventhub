@@ -32,7 +32,7 @@ class LoginForm extends Component {
                     alert(res.data.message)
                 } else {
                     // this.props.setLoginUser(res.data.user);
-                    this.props.history.push('/main');
+                    this.props.history.push('/user');
                     localStorage.setItem("accredited", "true")
                 }
             })
