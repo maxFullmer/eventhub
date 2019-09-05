@@ -12,7 +12,6 @@ const geocodio = new Geocodio(geoConfig);
 module.exports = {
   getUserEvents: async (req, res, next) => {
     const { userEvents } = req.body;
-
     let eventInfo = [];
 
     for (let i = 0; i < userEvents.length; i++) {
