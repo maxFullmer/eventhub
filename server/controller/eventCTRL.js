@@ -10,16 +10,19 @@ const geoConfig = {
 const geocodio = new Geocodio(geoConfig);
 
 module.exports = {
-  getUserEvents: (req, res, next) => {
-    const { userEvents } = req.params;
+  getUserEvents: async (req, res, next) => {
+    const { userEvents } = req.body;
 
     let eventInfo = [];
 
     for (let i = 0; i < userEvents.length; i++) {
       eventInfo.push(
-          Event.findOne({_id: userEvents[i]})
+           await Event.find({_id: userEvents[i]}).limit(1).then(([event]) => {
+            return event
+          })
         )
     }
+
     res.status(200).send(eventInfo)
   },
 
@@ -46,10 +49,8 @@ module.exports = {
 
       event.save((err) => {
           if (err) throw err;
-
+          
           let event_id = event._id;
-          console.log('event id: ', event_id)
-          console.log('user_id: ', mongoose.Types.ObjectId(user_id))
 
           User.findOne({_id: mongoose.Types.ObjectId(user_id)}).then((foundUser) => {
             foundUser.userEvents.push(event_id);
@@ -61,30 +62,30 @@ module.exports = {
     
       res.sendStatus(200);
     });
-  },
-
-  editEvent: (req, res, next) => {
-    const { formatted_address, city, description, event_name, eventDate, event_id } = req.body;
-
-    geocodio.get('geocode', {q: formatted_address}, function(err, response) {
-      if (err) throw err;
-  
-      const resStrToJSON = JSON.parse(response);
-      const location = resStrToJSON.results[0].location;
-
-      Event.findOneAndUpdate({_id: event_id}, {
-        eventName: event_name,
-        eventDate: eventDate,
-        description: description,
-        address: formatted_address,
-        city: city,
-        lat: location.lat,
-        lng: location.lng,
-        rsvpCount: 0,
-        category: ""
-      });
-      
-      res.status(200).send()
-    });
   }
+
+  // editEvent: (req, res, next) => {
+  //   const { formatted_address, city, description, event_name, eventDate, event_id } = req.body;
+
+  //   geocodio.get('geocode', {q: formatted_address}, function(err, response) {
+  //     if (err) throw err;
+  
+  //     const resStrToJSON = JSON.parse(response);
+  //     const location = resStrToJSON.results[0].location;
+
+  //     Event.findOneAndUpdate({_id: event_id}, {
+  //       eventName: event_name,
+  //       eventDate: eventDate,
+  //       description: description,
+  //       address: formatted_address,
+  //       city: city,
+  //       lat: location.lat,
+  //       lng: location.lng,
+  //       rsvpCount: 0,
+  //       category: ""
+  //     });
+      
+  //     res.status(200).send()
+  //   });
+  // }
 }
