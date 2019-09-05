@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import Search from './Search';
+// import Search from './Search';
 import './User.scss';
+import UserForm from './UserForm';
 
 class User extends Component {
     render() {
         return (
             <div>
-                <Search />
+                {/* <Search /> */}
+                <UserForm />
             </div>
         )
     }
