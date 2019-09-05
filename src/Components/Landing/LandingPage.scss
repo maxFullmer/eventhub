@@ -1,0 +1,291 @@
+@import '../../color-schemes.scss';
+@import '../../responsiveness.scss';
+
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-10rem);
+    }
+
+    80% {
+        transform: translateX(1rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(10rem);
+    }
+
+    80% {
+        transform: translateX(-1rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+@keyframes moveInBottom {
+    0% {
+        opacity: 0;
+        transform: translateY(3rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
+.landing-page {
+    height: 100vh;
+    box-sizing: border-box;
+    background-color: $color-primary;
+    font-family: "Lato", sans-serif;
+    line-height: 1.8;
+    color: $color-white;
+
+    @include respond(tab-port) {
+        padding: 0;
+    }
+}
+
+.landing-header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+::selection {
+    background-color: $color-primary;
+    color: $color-white;
+}
+
+.landing-heading-primary {
+    color: $color-primary;
+    text-transform: uppercase;
+    backface-visibility: hidden;
+    margin-bottom: 3rem;
+    margin-top: 75px;
+
+    &--main {
+        display: block;
+        // margin: 0 auto;
+        font-size: 12rem;
+        font-weight: 400;
+        letter-spacing: 6rem;
+        margin-top: 10px;
+        animation-name: moveInLeft;
+        animation-duration: 1s;
+        animation-timing-function: ease-out;
+
+        @include respond(phone) {
+            letter-spacing: 1rem;
+            font-size: 8rem;
+            margin-left: 30px;
+        }
+    }
+
+    &--sub {
+        display: block;
+        font-size: 2.75rem;
+        font-weight: 900;
+        animation: moveInRight 1s ease-out;
+
+        @include respond(phone) {
+            letter-spacing: .5rem;
+            font-size: 30px;
+        }
+    }
+}
+
+.landing-heading-primary--main {
+    text-shadow: 0 0 1px $color-white,
+        0 0 2px $color-white,
+        0 0 3px $color-white,
+        0 0 4px $color-white,
+        0 0 5px $color-white,
+        0 0 6px $color-white,
+        0 0 7px $color-white,
+        0 0 25px $color-secondary,
+        0 0 35px $color-secondary,
+        0 0 45px $color-secondary,
+        0 0 70px $color-tertiary,
+        0 0 95px $color-tertiary,
+        0 0 120px $color-four,
+        0 0 145px $color-four;
+}
+
+.landing-heading-primary--sub {
+    text-shadow: 0 0 0.50px $color-white,
+        0 0 1px $color-white,
+        0 0 1.5px $color-white,
+        0 0 2px $color-white,
+        0 0 2.5px $color-white,
+        0 0 3px $color-white,
+        0 0 3.5px $color-white,
+        0 0 4px $color-white,
+        0 0 4.5px $color-white,
+        0 0 5px $color-secondary,
+        0 0 6px $color-secondary,
+        0 0 7px $color-tertiary,
+        0 0 8px $color-tertiary,
+        0 0 9px $color-four,
+        0 0 10px $color-four;
+    margin-left: 70px;
+    margin-top: -25px;
+    font-style: bold;
+    letter-spacing: 10px;
+}
+
+.landing-button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#landing-button-1,
+#landing-button-2,
+#landing-button-3 {
+
+    &,
+    &:link,
+    &:visited {
+        text-transform: uppercase;
+        min-width: 30vw;
+        text-align: center;
+        // margin: 20px;
+        border-radius: 10rem;
+        transition: all .2s;
+        position: relative;
+        font-weight: 400;
+        letter-spacing: 4px;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        text-shadow: 0 0 .25px $color-white,
+            0 0 1px $color-white,
+            0 0 2.75px $color-secondary,
+            0 0 5.75px $color-tertiary,
+            0 0 7.75px $color-four;
+        background-image: linear-gradient(to top left,
+                $color-primary,
+                $color-primary-2);
+        color: $color-white;
+
+        //Change for the <button> element
+        border: none;
+        cursor: pointer;
+    }
+
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 1rem 2rem rgba($color-black, .2);
+
+        &::after {
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0;
+        }
+    }
+
+    &:active,
+    &:focus {
+        outline: none;
+        transform: translateY(-1px);
+        box-shadow: 0 .5rem 1rem rgba($color-black, .2);
+    }
+
+    &::after {
+        background-image: linear-gradient(to top left,
+                $color-primary,
+                $color-primary-2);
+    }
+
+    &::after {
+        content: "";
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 10rem;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transition: all .4s;
+    }
+
+    & {
+        animation: moveInBottom .5s ease-out .75s;
+        animation-fill-mode: backwards;
+    }
+
+    &:link,
+    &:visited {
+        font-size: $default-font-size;
+        display: block;
+        text-decoration: none;
+        padding: 10px;
+        transition: all .2s;
+    }
+
+    &:hover {
+        background-color: $color-primary;
+        color: $color-white;
+        box-shadow: 0 1rem 2rem rgba($color-black, .15);
+        transform: translateY(-2px);
+    }
+
+    &:active {
+        box-shadow: 0 .5rem 1rem rgba($color-black, .15);
+        transform: translateY(0);
+    }
+}
+
+#landing-button-1 label,
+#landing-button-2 label,
+#landing-button-3 label {
+    font-size: 20px;
+}
+
+.landing-header {
+    height: 85vh;
+    background-image:
+        linear-gradient(to right bottom,
+            rgba(142, 228, 175, 0.80),
+            rgba(92, 219, 149, 0.80),
+            rgba(55, 150, 131, 0.80),
+            rgba(5, 56, 107, 0.80)),
+        url(./img/DwntwnPHX.png);
+    background-size: cover;
+    background-position: top;
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+}
+
+@media only screen and (min-resolution: 192dpi) and (min-width: 37.5em),
+only screen and (-webkit-min-device-pixel-ratio: 2) and (min-width: 37.5em),
+only screen and (min-width: 125em) {
+    background-image: linear-gradient(to right bottom,
+            $color-tertiary-dark,
+            $color-four-dark,
+            $color-secondary-dark,
+            $color-tertiary-light,
+            $color-four-light,
+            $color-secondary-light),
+        url(./img/DwntwnPHX.png);
+}
+
+@include respond(phone) {
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 85vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+}

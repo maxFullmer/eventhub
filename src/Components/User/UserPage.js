@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import Search from './Search';
-import List from '../MapPage/List/List';
 import { Link } from 'react-router-dom';
-import './User.scss';
 import axios from 'axios';
+import EventsList from '../Map/EventsList/EventsList';
+import './UserPage.scss';
 
 export default class User extends Component {
     constructor(props) {
@@ -48,13 +47,13 @@ export default class User extends Component {
         })
     }
 
-    logout(){
-                axios.get('/api/logout')
-                    .then(response => {
-                        this.props.history.push("/")
-                        localStorage.setItem('accredited', 'false')
-                    })
-            }
+    logout() {
+        axios.get('/api/logout')
+            .then(response => {
+                this.props.history.push("/")
+                localStorage.setItem('accredited', 'false')
+            })
+    }
 
     render() {
         console.log(this.state)
@@ -69,7 +68,7 @@ export default class User extends Component {
             const listedEvents = events.map((event, i) => {
                 return (
                     <div key={i}>
-                        <List
+                        <EventsList
                             i={i + 1}
                             name={event.eventName}
                             date={event.eventDate}
@@ -83,7 +82,7 @@ export default class User extends Component {
             return (
                 <div className="user-page">
                     <h1 id="user-name">{user.username}</h1>
-                    <Link to="/userform">
+                    <Link to="/event-form">
                         <button id="post-event">Create New Event</button>
                     </Link>
                     <button onClick={() => this.getUserEvents()}>Show My Events</button>

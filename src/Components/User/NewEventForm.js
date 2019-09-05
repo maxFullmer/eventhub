@@ -1,7 +1,8 @@
 import React from 'react'
-import './UserForm.scss';
-import Calendar from 'react-calendar';
 import axios from 'axios';
+import Calendar from 'react-calendar';
+import './NewEventForm.scss';
+
 const google = window.google;
 
 class UserEventsForm extends React.Component {

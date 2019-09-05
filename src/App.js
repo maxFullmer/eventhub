@@ -1,34 +1,28 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-// import { withScriptjs, withGoogleMap } from 'react-google-maps'
-import Main from './Components/Main/Main';
-import MapPage from './Components/MapPage/MapPage'
-import UserForm from './Components/User/UserForm';
-import User from './Components/User/User'
+import HamburgerMenu from './Components/Hamburger/HamburgerMenu';
+import LandingPage from './Components/Landing/LandingPage';
+import MainPage from './Components/Main/MainPage';
+import MapPage from './Components/Map/MapPage'
+import UserPage from './Components/User/UserPage'
+import NewEventForm from './Components/User/NewEventForm';
 import RegisterForm from './Components/Login/Registration/RegisterForm';
-import PrivateRoute from './Components/PrivateRoute';
-// import Landing from './Components/Landing/Landing';
 import LoginForm from './Components/Login/LoginForm';
-// import HamburgerMenu from './Components/HamburgerMenu/HamburgerMenu';
+import PrivateRoute from './Components/PrivateRoute';
 import './App.css';
-// import { GOOGLE_MAPS_API_KEY } from '../.env';
-
-// const WrappedMap = withScriptjs(withGoogleMap(Gmap));
-
-// console.log(GOOGLE_MAPS_API_KEY)
 
 function App() {
   return (
     <div className="App">
-      {/* <HamburgerMenu /> */}
+      <HamburgerMenu />
       <Switch>
-        {/* <Route exact path="/" component={Landing} /> */}
+        <Route exact path="/" component={LandingPage} />
+        <Route path="/main" component={MainPage} />
+        <Route path="/map" component={MapPage} />
+        <PrivateRoute path="/user" component={UserPage} />
+        <PrivateRoute path='/event' component={NewEventForm} />
         <Route exact path="/login" component={LoginForm} />
         <Route path="/register" component={RegisterForm} />
-        <PrivateRoute path="/user" component={User} />
-        <Route path="/main" component={Main} />
-        <PrivateRoute path='/userform' component={UserForm} />
-        <Route path="/map" component={MapPage} />
       </Switch>
     </div>
   );

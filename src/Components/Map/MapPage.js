@@ -1,6 +1,6 @@
 import React from 'react';
 import Gmap from './Gmap/Gmap'
-import List from './List/List';
+import EventsList from './EventsList/EventsList';
 import axios from "axios";
 import "./MapPage.scss"
 
@@ -53,7 +53,7 @@ export default class MapPage extends React.Component {
             const { events } = this.state
             const listedEvents = events.map((event, i) => {
                 return (
-                    <List
+                    <EventsList
                         i={i + 1}
                         name={event.eventName}
                         date={event.eventDate}
