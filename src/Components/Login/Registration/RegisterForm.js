@@ -6,7 +6,7 @@ class RegisterForm extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            userName: '',
+            username: '',
             email: '',
             password: ''
         }
@@ -17,14 +17,14 @@ class RegisterForm extends Component {
 
     register(e) {
         // e.preventDefault();
-        const { userName, email, password } = this.state;
+        const { username, email, password } = this.state;
         axios.post('/api/register', {
-            "userName": userName,
-            "email": email,
-            "password": password
+            username: username,
+            email: email,
+            password: password
         })
             .then(res => {
-                this.props.setUser(res.data)
+                this.props.history.push('/user')
             });
     }
 
@@ -35,7 +35,7 @@ class RegisterForm extends Component {
     }
 
     render() {
-        const { userName, email, password } = this.state;
+        const { username, email, password } = this.state;
 
         const titleStyle = {
             fontFamily: "'Lato', sans- serif",
@@ -92,8 +92,8 @@ class RegisterForm extends Component {
                         </div>
                         <div className="card-body">
                             <div className="form-group-lg">
-                                <label className="userName-label" for="email" style={subTitleStyle}>Username:</label>
-                                <input style={emailInputStyle} type="text" className="form-control" onChange={(e) => this.universalChangeHandler('userName', e.target.value)} value={userName} />
+                                <label className="username-label" for="email" style={subTitleStyle}>username:</label>
+                                <input style={emailInputStyle} type="text" className="form-control" onChange={(e) => this.universalChangeHandler('username', e.target.value)} value={username} />
                             </div>
                             <div className="form-group-lg">
                                 <label className="email-label" for="email" style={subTitleStyle}>Email:</label>
