@@ -10,16 +10,19 @@ const geoConfig = {
 const geocodio = new Geocodio(geoConfig);
 
 module.exports = {
-  getUserEvents: (req, res, next) => {
-    const { userEvents } = req.params;
-
+  getUserEvents: async (req, res, next) => {
+    const { userEvents } = req.body;
+    console.log( userEvents )
     let eventInfo = [];
 
     for (let i = 0; i < userEvents.length; i++) {
       eventInfo.push(
-          Event.findOne({_id: userEvents[i]})
+           await Event.find({_id: userEvents[i]}).limit(1).then(([event]) => {
+            return event
+          })
         )
     }
+
     res.status(200).send(eventInfo)
   },
 

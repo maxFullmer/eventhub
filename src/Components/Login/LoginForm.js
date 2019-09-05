@@ -25,14 +25,15 @@ class LoginForm extends Component {
     login(e) {
         // e.preventDefault();
         const { email, password } = this.state;
-        axios.post('/auth/login', { email: email, password: password })
+        axios.post('/api/login', { email: email, password: password })
             .then(res => {
                 console.log(res);
                 if (res.data.message) {
                     alert(res.data.message)
                 } else {
-                    this.props.setLoginUser(res.data.user);
+                    // this.props.setLoginUser(res.data.user);
                     this.props.history.push('/main');
+                    localStorage.setItem("accredited", "true")
                 }
             })
     }

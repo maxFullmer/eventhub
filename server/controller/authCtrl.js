@@ -45,9 +45,9 @@ module.exports = {
     },
 
     login: (req, res, next) => {
-        let { username, password } = req.body;
+        let { email, password } = req.body;
 
-        User.find({username: username}).limit(1)
+        User.find({email: email}).limit(1)
             .then(([user]) => {
                 bcrypt.compare(password, user.password)
                 .then((samePassword) => {
@@ -56,7 +56,7 @@ module.exports = {
                     }
 
                     req.session.user = {
-                        username: username,
+                        username: user.username,
                         user_id: user._id,
                         userEvents: user.userEvents
                     }

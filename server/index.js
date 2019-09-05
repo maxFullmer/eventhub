@@ -37,7 +37,7 @@ app.post('/api/search', searchEvents);
 app.post('/api/get-city-loc', getCityLatLng);
 
 // USER PAGE/VIEW
-app.get('/api/get-my-events/:user_id', getUserEvents);
+app.post('/api/get-my-events', getUserEvents);
 app.post('/api/post-event', postEvent);
 app.put('/api/edit-event', editEvent);
 
