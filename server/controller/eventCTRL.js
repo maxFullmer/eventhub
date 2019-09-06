@@ -70,22 +70,30 @@ module.exports = {
 
   cancelEvent: (req, res, next) => {
     const { event_id, user_id } = req.body;
+    console.log(event_id, user_id)
 
+    try {
+    Event.findByIdAndDelete({_id: event_id})
+    .then(res => {
+      console.log(res)
+    })
+  } catch (err) {
+    console.log(err)
+  }
+    
     User.findOne({_id: mongoose.Types.ObjectId(user_id)}).then((foundUser) => {
       let event_index = foundUser.userEvents.indexOf(mongoose.Types.ObjectId(event_id));
       foundUser.userEvents.splice(event_index, 1);
       foundUser.save((err) => {
         if (err) throw err;
+          req.session.user = foundUser
+          req.session.save()
+          res.status(200).send(req.session.user);
       })
     });
-         
-    try {
-      Event.deleteOne({_id: mongoose.Types.ObjectId(event_id)})
-    } catch (err) {
-      console.log(err)
-    }
+    
 
-    res.sendStatus(200)
+
   }
 
   // editEvent: (req, res, next) => {
