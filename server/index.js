@@ -5,7 +5,7 @@ const session = require('express-session');
 const mongoose = require("mongoose")
 const { searchEvents, getCityLatLng } = require("./controller/mainPageCTRL");
 const { postEvent, getUserEvents, cancelEvent } = require('./controller/eventCTRL');
-const { register, login, logout, userSession} = require('./controller/authCtrl')
+const { register, login, logout, userSession } = require('./controller/authCtrl')
 
 const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
 
@@ -22,7 +22,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   cookie: {
-      maxAge: 1000 * 3600 * 24 * 14 // a fortnight (aka 2 weeks)
+    maxAge: 1000 * 3600 * 24 * 14 // a fortnight (aka 2 weeks)
   }
 }));
 

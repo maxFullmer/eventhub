@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import List from '../MapPage/List/List';
+import EventsList from '../Map/EventsList/EventsList';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import EventsList from '../Map/EventsList/EventsList';
 import './UserPage.scss';
 
 export default class User extends Component {

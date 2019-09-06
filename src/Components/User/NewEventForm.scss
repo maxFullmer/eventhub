@@ -1,3 +1,5 @@
+@import '../../color-schemes.scss';
+
 #autocomplete {
     position: relative;
     z-index: 1;
@@ -5,30 +7,122 @@
     width: 70%;
 }
 
+
 #events-page {
     height: 100vh;
     width: 100vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    background-image:
-        linear-gradient(to right bottom,
-            rgba(92, 219, 149, 0.55),
-            rgba(142, 228, 175, 0.85),
-            rgba(5, 56, 107, 0.55),
-            rgba(55, 150, 131, 0.85),
-            rgba(92, 219, 149, 0.55),
-            rgba(5, 56, 107, 0.65),
-            rgba(142, 228, 175, 0.55),
-            rgba(55, 150, 131, 0.85),
-            rgba(5, 56, 107, 0.75)),
-        url(../Landing/img/DwntwnPHX.png);
     background-size: cover;
-    background-position: top;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Lato",
+        sans-serif;
+    background-image: linear-gradient(to right bottom,
+            rgba(92, 219, 149, 0.85),
+            rgba(5, 56, 107, 0.85),
+            rgba(92, 219, 149, 0.85),
+            rgba(5, 56, 107, 0.85),
+            rgba(92, 219, 149, 0.85),
+            rgba(5, 56, 107, 0.85))
 }
 
-#events-card {
-    background-color: rgb(98, 98, 98);
-    color: whitesmoke;
+.events-box {
+    margin: 0% auto 0% auto;
+    align-items: center;
+    padding: 70px 60px 350px 60px;
+    width: 65vw;
+    height: 94vh;
+    border-radius: 10rem;
+    box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.4);
+}
+
+.events-box h2 {
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 60px;
+    color: rgb(5, 56, 107);
+    text-shadow: 0 0 0.50px $color-white,
+        0 0 1px $color-white,
+        0 0 1.5px $color-white,
+        0 0 2px $color-white,
+        0 0 2.5px $color-white,
+        0 0 3px $color-white,
+        0 0 3.5px $color-white,
+        0 0 4px $color-white,
+        0 0 4.5px $color-white,
+        0 0 5px $color-secondary,
+        0 0 6px $color-secondary,
+        0 0 7px $color-tertiary,
+        0 0 8px $color-tertiary,
+        0 0 9px $color-four,
+        0 0 10px $color-four;
+
+}
+
+.events-p {
+    font-weight: bold;
+    color: rgb(5, 56, 107);
+    font-size: 22px;
+}
+
+.events-box input {
+    width: 100%;
+    height: 20px;
+    margin: 0 0 20px 0;
+}
+
+.events-box input[type="text"] {
+    border: none;
+    border-bottom: 2px solid rgb(5, 56, 107);
+    font-size: 22px;
+    background: transparent;
+    outline: none;
+    color: rgb(5, 56, 107);
+    text-align: center;
+}
+
+::placeholder {
+    color: rgb(5, 56, 107);
+    font-size: 20px;
+    opacity: 0.5;
+    text-align: center;
+    // padding-bottom: 8px;
+}
+
+.events-box input[type="submit"] {
+    border: 2.5px solid;
+    height: 40px;
+    line-height: 1rem;
+    width: 350px;
+    align-content: center;
+    align-items: center;
+    color: rgb(5, 56, 107);
+    background-color: transparent;
+    margin: 0 auto;
+    display: block;
+    margin-top: 40px;
+    border-radius: 10rem;
+}
+
+.events-form {
+    line-height: 5rem;
+}
+
+.events-box input[type="submit"]:hover {
+    color: rgb(142, 228, 175);
+    background-color: rgb(70, 70, 70);
+    border: 4px solid;
+}
+
+#register-page p {
+    font-size: 20px;
+    margin-bottom: 30px;
+    text-decoration: underline;
+    font-weight: 600;
+    text-transform: uppercase;
 }
