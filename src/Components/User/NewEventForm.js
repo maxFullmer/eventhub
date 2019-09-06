@@ -1,5 +1,4 @@
 import React from 'react'
-import './UserForm.scss';
 import Calendar from 'react-calendar';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -26,7 +25,6 @@ class UserEventsForm extends React.Component {
             description: '',
             formatted_address: '',
             city: '',
-            googleMapLink: '',
             user: props.user
         }
     }
