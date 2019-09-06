@@ -94,7 +94,7 @@ class LoginForm extends Component {
                         <div className="card-body">
 
                             <div className="form-group-lg">
-                                <label className="email-label" for="email" style={subTitleStyle}>Email:</label>
+                                <label className="email-label" htmlFor="email" style={subTitleStyle}>Email:</label>
                                 <input style={emailInputStyle}
                                     type="email"
                                     className="form-control"
@@ -103,7 +103,7 @@ class LoginForm extends Component {
                                 />
                             </div>
                             <div className="form-group-lg">
-                                <label className="password-label" for="password" style={subTitleStyle}>Password:</label>
+                                <label className="password-label" htmlFor="password" style={subTitleStyle}>Password:</label>
                                 <input style={inputStyle}
                                     type="password"
                                     className="form-control"

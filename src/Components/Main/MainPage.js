@@ -1,7 +1,6 @@
 import React from 'react';
 import Calendar from 'react-calendar';
-// import axios from 'axios';
-import "./Main.scss"
+import "./MainPage.scss"
 
 export default class Main extends React.Component {
     constructor(props) {
@@ -31,18 +30,18 @@ export default class Main extends React.Component {
     render() {
         return (
             <div className="main-page">
-            <div className="main-container">
-                <input
-                id="city-input"
-                value={this.state.city} 
-                onChange={(e) => {this.setState({ city: e.target.value})}}
-                />
-                <Calendar
-                onChange={this.changeHandler}
-                value={this.state.date} 
-                />
-                <button id="party-button" onClick={(e) => this.searchEvents(e)}>Let's Party</button>
-            </div>
+                <div className="main-container">
+                    <input
+                        id="city-input"
+                        value={this.state.city}
+                        onChange={(e) => { this.setState({ city: e.target.value }) }}
+                    />
+                    <Calendar
+                        onChange={this.changeHandler}
+                        value={this.state.date}
+                    />
+                    <button id="party-button" onClick={(e) => this.searchEvents(e)}>Let's Party</button>
+                </div>
             </div>
         )
     }

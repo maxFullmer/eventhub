@@ -1,22 +1,15 @@
 import React from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
-// import { withScriptjs, withGoogleMap } from 'react-google-maps'
-import Main from './Components/Main/Main';
-import MapPage from './Components/MapPage/MapPage'
-import UserForm from './Components/User/UserForm';
-import User from './Components/User/User'
+import { Route, Switch } from 'react-router-dom';
+import HamburgerMenu from './Components/Hamburger/HamburgerMenu';
+import LandingPage from './Components/Landing/LandingPage';
+import MainPage from './Components/Main/MainPage';
+import MapPage from './Components/Map/MapPage'
+import UserPage from './Components/User/UserPage'
+import NewEventForm from './Components/User/NewEventForm';
 import RegisterForm from './Components/Login/Registration/RegisterForm';
-import axios from 'axios'
-import PrivateRoute from './Components/PrivateRoute';
-// import Landing from './Components/Landing/Landing';
 import LoginForm from './Components/Login/LoginForm';
-// import HamburgerMenu from './Components/HamburgerMenu/HamburgerMenu';
+import PrivateRoute from './Components/PrivateRoute';
 import './App.css';
-// import { GOOGLE_MAPS_API_KEY } from '../.env';
-
-// const WrappedMap = withScriptjs(withGoogleMap(Gmap));
-
-// console.log(GOOGLE_MAPS_API_KEY)
 
 class App extends React.Component {
   constructor(props){
@@ -39,9 +32,9 @@ class App extends React.Component {
     console.log("app state", this.state.user)
   return (
     <div className="App">
-      {/* <HamburgerMenu /> */}
+      <HamburgerMenu />
       <Switch>
-        {/* <Route exact path="/" component={Landing} /> */}
+        <Route exact path="/" component={LandingPage} />
         <Route path="/login" render={(props) => 
           <LoginForm {...props} fetchUserSession={this.fetchUserSession}/>
         } />
@@ -50,18 +43,18 @@ class App extends React.Component {
             let authorized = localStorage.getItem('accredited')
             if(authorized === 'true'){
               return (
-                <User {...props} user={this.state.user} fetchUserSession={this.fetchUserSession}/>
+                <UserPage {...props} user={this.state.user} fetchUserSession={this.fetchUserSession}/>
               )
             } else {
               return <LoginForm {...props} fetchUserSession={this.fetchUserSession}/>
             }
           } }/>
-        <Route path="/main" component={Main} />
+        <Route path="/main" component={MainPage} />
         <Route path='/userform'  render={(props) => {
             let authorized = localStorage.getItem('accredited')
             if(authorized === 'true'){
               return (
-                <UserForm {...props} user={this.state.user} fetchUserSession={this.fetchUserSession}/>
+                <NewEventForm {...props} user={this.state.user} fetchUserSession={this.fetchUserSession}/>
               )
             } else {
               return <LoginForm {...props} fetchUserSession={this.fetchUserSession}/>

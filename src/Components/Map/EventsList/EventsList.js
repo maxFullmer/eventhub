@@ -1,5 +1,5 @@
 import React from 'react';
-import './List.scss';
+import './EventsList.scss';
 
 export default function List(props) {
   //  const date = props.date;

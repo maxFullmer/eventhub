@@ -3,6 +3,8 @@ import './UserForm.scss';
 import Calendar from 'react-calendar';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import './NewEventForm.scss';
+
 const google = window.google;
 
 class UserEventsForm extends React.Component {
