@@ -117,7 +117,7 @@ describe('Integration aka E2E tests', () => {
         describe('functionForIntegrationTestA', () => {
             it('should delete', () => {
                 const event_id = ""
-                expect(serverTests.deleteEvent(event_id)).toEqual({ "acknowledged" : true, "deletedCount" : 1 })
+                expect(serverTests.deleteEvent(event_id)).toEqual(event_id)
             })
         })
     })
