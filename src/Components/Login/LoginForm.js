@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './LoginForm.scss';
 
@@ -14,28 +15,16 @@ class LoginForm extends Component {
         this.universalChangeHandler = this.universalChangeHandler.bind(this);
     }
 
-    componentDidMount() {
-        axios.get('/auth/user_session').then(res => {
-            console.log(res.data)
-            this.props.setLoginUser(res.data)
-        })
-        console.log(this.props)
-    }
-
     login(e) {
-        // e.preventDefault();
+        e.preventDefault();
         const { email, password } = this.state;
         axios.post('/api/login', { email: email, password: password })
-            .then(res => {
-                console.log(res);
-                if (res.data.message) {
-                    alert(res.data.message)
-                } else {
-                    // this.props.setLoginUser(res.data.user);
-                    this.props.history.push('/user');
-                    localStorage.setItem("accredited", "true")
-                }
-            })
+            .then((res) => {
+                console.log("login form ",res.data)
+                this.props.fetchUserSession(res.data)
+                localStorage.setItem("accredited", "true")
+                this.props.history.push('/user')
+            }).catch( err => alert(err))
     }
 
     universalChangeHandler(property, value) {
@@ -122,7 +111,7 @@ class LoginForm extends Component {
                                     value={password}
                                 />
                             </div>
-                            <input type="Submit" onClick={() => this.login()} className="btn btn-block" style={buttonStyle} />
+                            <input type="Submit" onClick={(e) => this.login(e)} className="btn btn-block" style={buttonStyle} />
                         </div>
                     </div>
                 </div>

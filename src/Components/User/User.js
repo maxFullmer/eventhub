@@ -9,16 +9,20 @@ export default class User extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            user: {},
             events: [],
             loading: true
         }
         this.getUserEvents = this.getUserEvents.bind(this);
         this.getUserSession = this.getUserSession.bind(this);
+        console.log('in user constructor',this.props)
+        console.log('same',props)
     }
 
     componentDidMount() {
-        this.getUserSession();
+        this.props.fetchUserSession()
+        this.setState({
+            loading: false
+        })
         // this.getUserEvents();
     }
 
@@ -40,7 +44,7 @@ export default class User extends Component {
     }
 
     getUserEvents() {
-        axios.post(`/api/get-my-events`, { userEvents: this.state.user.userEvents }).then(res => {
+        axios.post(`/api/get-my-events`, { userEvents: this.props.user.userEvents }).then(res => {
             console.log("itworked")
             this.setState({
                 events: res.data,
@@ -57,7 +61,7 @@ export default class User extends Component {
             }
 
     render() {
-        console.log(this.state)
+        console.log(this.props.user)
         if (this.state.loading) {
             return (
                 <div>
@@ -65,7 +69,8 @@ export default class User extends Component {
                </div>
             )
         } else {
-            const { events, user } = this.state
+            const { events } = this.state
+            const {user} = this.props
             const listedEvents = events.map((event, i) => {
                 return (
                     <div key={i}>

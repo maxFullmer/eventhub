@@ -1,13 +1,14 @@
 import React from 'react'
 import './UserForm.scss';
 import Calendar from 'react-calendar';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 const google = window.google;
 
 class UserEventsForm extends React.Component {
     constructor(props) {
         super(props)
-        this.state = this.initialState();
+        this.state = this.initialState(props);
         this.handleChange = this.handleChange.bind(this);
         this.changeHandler = this.changeHandler.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -16,7 +17,7 @@ class UserEventsForm extends React.Component {
         this.autocomplete = null;
     }
 
-    initialState() {
+    initialState(props) {
         return {
             eventName: '',
             eventDate: new Date(),
@@ -24,7 +25,7 @@ class UserEventsForm extends React.Component {
             formatted_address: '',
             city: '',
             googleMapLink: '',
-            user: {}
+            user: props.user
         }
     }
 
@@ -32,7 +33,7 @@ class UserEventsForm extends React.Component {
         this.autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), {})
         this.autocomplete.setFields(['address_components']);
         this.autocomplete.addListener("place_changed", this.handlePlaceSelect);
-        this.getUserSession();
+        // this.getUserSession();
     }
 
     getUserSession() {
@@ -74,15 +75,14 @@ class UserEventsForm extends React.Component {
         })
     }
 
-    handleSubmit = (event) => {
-        event.preventDefault();
+    handleSubmit = (e) => {
+        e.preventDefault();
         const {
             eventName,
             eventDate,
             description,
             formatted_address,
-            city,
-            user
+            city
         } = this.state;
         axios.post(`/api/post-event`, {
             eventName: eventName,
@@ -90,18 +90,18 @@ class UserEventsForm extends React.Component {
             description: description,
             formatted_address: formatted_address,
             city: city,
-            user_id: user.user_id
+            user_id: this.props.user.user_id
         })
-            .then(response => console.log(response))
+            .then((res) => {
+            this.props.fetchUserSession()
+            this.props.history.push("/user")
+            })
             .catch(error => console.log(error));
+            
     }
 
     render() {
-        console.log('eventName: ', this.state.eventName);
-        console.log('eventDate: ', this.state.eventDate);
-        console.log('description: ', this.state.description);
-        console.log('formatted_address: ', this.state.formatted_address);
-        console.log('city: ', this.state.city);
+       console.log("user =====", this.props.user)
 
         const titleStyle = {
             fontFamily: "'Lato', sans- serif",
@@ -208,9 +208,9 @@ class UserEventsForm extends React.Component {
                                         onChange={this.handleChange}
                                     />
                                 </div> */}
-
-                            <input type="Submit" onClick={(event) => this.handleSubmit(event)} className="btn btn-block" style={buttonStyle} />
-
+                            <Link to='/user'>
+                            <input type="Submit" onClick={(e) => this.handleSubmit(e)} className="btn btn-block" style={buttonStyle} />
+                            </Link>
                         </div>
                     </div >
                 </div >

@@ -51,18 +51,22 @@ module.exports = {
           if (err) throw err;
 
           let event_id = event._id;
+          
           console.log('event id: ', event_id)
           console.log('user_id: ', mongoose.Types.ObjectId(user_id))
-
-          User.findOne({_id: mongoose.Types.ObjectId(user_id)}).then((foundUser) => {
+          
+          User.findById(user_id).then((foundUser) => {
+           
             foundUser.userEvents.push(event_id);
             foundUser.save((err) => {
               if (err) throw err;
+              console.log('we are here => ', foundUser)
+              req.session.user = foundUser
+              req.session.save()
+              res.status(200).send(req.session.user);
             })
           })           
         })
-    
-      res.sendStatus(200);
     });
   },
 
