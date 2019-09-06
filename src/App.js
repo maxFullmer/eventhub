@@ -8,8 +8,7 @@ import UserPage from './Components/User/UserPage'
 import NewEventForm from './Components/User/NewEventForm';
 import RegisterForm from './Components/Login/Registration/RegisterForm';
 import LoginForm from './Components/Login/LoginForm';
-import axios from 'axios'
-import PrivateRoute from './Components/PrivateRoute';
+import axios from 'axios';
 import './App.css';
 
 class App extends React.Component {

@@ -22,7 +22,11 @@ export default class Main extends React.Component {
     searchEvents(e) {
         e.preventDefault();
         const { city, date } = this.state;
-        localStorage.setItem("city", city)
+        let capitalize = city.slice();
+        capitalize.toLowerCase().split(' ')
+        .map((str) => str.charAt(0).toUpperCase() + str.substring(1))
+        .join(' ');
+        localStorage.setItem("city", capitalize);
         localStorage.setItem("date", date)
         this.props.history.push('/map');
     }
@@ -33,6 +37,7 @@ export default class Main extends React.Component {
                 <div className="main-container">
                     <input
                         id="city-input"
+                        placeholder="Enter City (ie. Virginia Beach)"
                         value={this.state.city}
                         onChange={(e) => { this.setState({ city: e.target.value }) }}
                     />

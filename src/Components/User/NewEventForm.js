@@ -25,7 +25,6 @@ class UserEventsForm extends React.Component {
             description: '',
             formatted_address: '',
             city: '',
-            googleMapLink: '',
             user: props.user
         }
     }
