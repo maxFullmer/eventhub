@@ -50,7 +50,7 @@ class App extends React.Component {
             }
           } }/>
         <Route path="/main" component={MainPage} />
-        <Route path='/userform'  render={(props) => {
+        <Route path='/event-form'  render={(props) => {
             let authorized = localStorage.getItem('accredited')
             if(authorized === 'true'){
               return (
