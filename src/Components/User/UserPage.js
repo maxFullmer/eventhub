@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import EventsList from '../Map/EventsList/EventsList';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './UserPage.scss';
@@ -8,16 +7,20 @@ export default class User extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            user: {},
             events: [],
             loading: true
         }
         this.getUserEvents = this.getUserEvents.bind(this);
         this.getUserSession = this.getUserSession.bind(this);
+        console.log('in user constructor', this.props)
+        console.log('same', props)
     }
 
     componentDidMount() {
-        this.getUserSession();
+        this.props.fetchUserSession()
+        this.setState({
+            loading: false
+        })
         // this.getUserEvents();
     }
 
@@ -29,22 +32,27 @@ export default class User extends Component {
                 loading: false
             })
         })
-        // .catch( (err) => {
-        //     console.log(err);
-        //     if (this.state.user === {}){
-        //     alert('Please log in with a valid account');
-        //     this.props.history.push('/login')
-        //     }
-        // })
     }
 
     getUserEvents() {
-        axios.post(`/api/get-my-events`, { userEvents: this.state.user.userEvents }).then(res => {
+        axios.post(`/api/get-my-events`, { userEvents: this.props.user.userEvents }).then(res => {
             console.log("itworked")
             this.setState({
                 events: res.data,
             })
         })
+    }
+
+    deleteEvent(id) {
+        let user_id = this.props.user.user_id
+        console.log("this is the req.body: ", user_id, id)
+        axios.post('/api/cancel-event', { user_id: user_id, event_id: id })
+            .then((res) => {
+                console.log("RESPONSE!", res.data)
+                this.props.fetchUserSession()
+            }
+            )
+
     }
 
     logout() {
@@ -56,7 +64,8 @@ export default class User extends Component {
     }
 
     render() {
-        console.log(this.state)
+        console.log(this.state);
+        console.log(this.props.user);
         if (this.state.loading) {
             return (
                 <div>
@@ -64,7 +73,8 @@ export default class User extends Component {
                </div>
             )
         } else {
-            const { events, user } = this.state
+            const { events } = this.state
+            const { user } = this.props
             const listedEvents = events.map((event, i) => {
                 return (
                     <div key={i}>
@@ -75,21 +85,27 @@ export default class User extends Component {
                             address={event.address}
                             description={event.description}
                         />
-                        <span><button></button></span>
+                        <button id='user-delete-button' ><i onClick={() => this.deleteEvent(event._id)} className='fa fa-trash'></i></button>
                     </div>
                 )
             })
             return (
-                <div className="user-page">
-                    <h1 id="user-name">{user.username}</h1>
-                    <Link to="/event-form">
-                        <button id="post-event">Create New Event</button>
-                    </Link>
-                    <button onClick={() => this.getUserEvents()}>Show My Events</button>
-                    <div className="event-container">
-                        {listedEvents}
+                <div className="user-page-background">
+                    <div className="user-page">
+                        <div className="user-info-header">
+                            <h1 id="user-name">{user.username}'s profile</h1>
+                            <div className="button-box">
+                                <Link to="/event-form">
+                                    <button className='user-page-button' id="post-event">Create New Event</button>
+                                </Link>
+                                <button className='user-page-button' onClick={() => this.getUserEvents()}>Show My Events</button>
+                                <button className='user-page-button' onClick={() => this.logout()}>Logout</button>
+                            </div>
+                        </div>
+                        <div className="event-container">
+                            {listedEvents}
+                        </div>
                     </div>
-                    <button onClick={() => this.logout()}>Logout</button>
                 </div>
             )
         }
