@@ -37,7 +37,7 @@ export default class Main extends React.Component {
                 <div className="main-container">
                     <input
                         id="city-input"
-                        placeholder="Enter City (ie. Virginia Beach)"
+                        placeholder="Enter City"
                         value={this.state.city}
                         onChange={(e) => { this.setState({ city: e.target.value }) }}
                     />

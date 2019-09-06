@@ -1,45 +1,79 @@
-.user-page{
-    width: 80vw;
-    left: 10vw;
+.user-page-background{
+    background-image:
+        linear-gradient(to right bottom,
+            rgba(92, 219, 149, 0.55),
+            rgba(142, 228, 175, 0.85),
+            rgba(5, 56, 107, 0.55),
+            rgba(55, 150, 131, 0.85),
+            rgba(92, 219, 149, 0.55),
+            rgba(5, 56, 107, 0.65),
+            rgba(142, 228, 175, 0.55),
+            rgba(55, 150, 131, 0.85),
+            rgba(5, 56, 107, 0.75)),
+        url(../Landing/img/DwntwnPHX.png);
+    background-size: cover;
     position: absolute;
-    .user-info-header{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: relative;
-        min-width: 100%;
-        height: 15vh;
-        #user-name{
-            font-size:2rem;
-            font-weight: bold;
+    height:150%;
+    width:100%;
+    .user-page{
+        width: 80vw;
+        left: 10vw;
+        position: absolute;
+        
+        .user-info-header{
             display: flex;
+            justify-content: space-between;
+            align-items: center;
             position: relative;
-            left: 10px;
-        }
-        .button-box{
-            display: flex;
-            width:40%;
-            right: 30px;
-            justify-content: space-around;
-            position: relative;
-            text-align: center;
-            font-size:1.7rem;
-            .user-page-button{
-            background-color: fuchsia;
-                border: none;
-                border-radius: 0.5rem;
-                // padding: 1rem;
-                text-decoration:none;
+            min-width: 100%;
+            height: 15vh;
+            #user-name{
+                font-size:4em;
+                font-weight: bold;
+                display: flex;
+                position: relative;
+                left: 10px;
+            }
+            .button-box{
+                display: flex;
+                width:40%;
+                right: 30px;
+                justify-content: space-around;
+                position: relative;
+                text-align: center;
+                font-size:2rem;
+                text-decoration: none;
+                .user-page-button{
+                    background-color: fuchsia;
+                    border: none;
+                    border-radius: 0.5rem;
+                    // padding: 1rem;
+                    text-decoration:none;
+                }
             }
         }
-    }
-    .event-container{
-        width: 80%;
-        left: 10%;
-        position: absolute;
-        #user-delete-button{
+        .event-container{
+            
+            // max-height: 80vh;
+            width: 70%;
+            left: 15%;
             position: absolute;
-            left: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            #user-delete-button{
+                visibility: hidden;
+                position: absolute;
+                display: flex;
+                left: 105%;
+                border:none;
+                font-size: 1.5rem;
+                .fa-trash{
+                    visibility: visible;
+                    position: relative;
+                    bottom: 25px;
+                }
+            }
         }
     }
 }

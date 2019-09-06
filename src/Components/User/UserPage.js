@@ -33,13 +33,6 @@ export default class User extends Component {
                 loading: false
             })
         })
-        // .catch( (err) => {
-        //     console.log(err);
-        //     if (this.state.user === {}){
-        //     alert('Please log in with a valid account');
-        //     this.props.history.push('/login')
-        //     }
-        // })
     }
 
     getUserEvents() {
@@ -51,6 +44,18 @@ export default class User extends Component {
         })
     }
 
+    deleteEvent(id){
+        let user_id = this.props.user.user_id
+        console.log("this is the req.body: ", user_id, id)
+        axios.post('/api/cancel-event', {user_id: user_id, event_id: id })
+        .then((res) => {
+                console.log("RESPONSE!", res.data)
+                this.props.fetchUserSession()
+            }
+        )
+        
+    }
+
     logout() {
         axios.get('/api/logout')
             .then(response => {
@@ -60,7 +65,8 @@ export default class User extends Component {
     }
 
     render() {
-        console.log(this.props.user)
+        console.log(this.state);
+        console.log(this.props.user);
         if (this.state.loading) {
             return (
                 <div>
@@ -80,24 +86,26 @@ export default class User extends Component {
                             address={event.address}
                             description={event.description}
                         />
-                        <span><button id='user-delete-button'>Delete</button></span>
+                        <button id='user-delete-button' ><i onClick={() => this.deleteEvent(event._id)} className='fa fa-trash'></i></button>
                     </div>
                 )
             })
             return (
-                <div className="user-page">
-                    <div className="user-info-header">
-                        <h1 id="user-name">{user.username}'s profile</h1>
-                        <div className="button-box">
-                            <Link to="/event-form">
-                            <button className='user-page-button' id="post-event">Create New Event</button>
-                            </Link>
-                            <button className='user-page-button' onClick={() => this.getUserEvents()}>Show My Events</button>
-                            <button className='user-page-button' onClick={() => this.logout()}>Logout</button>
+                <div className="user-page-background">
+                    <div className="user-page">
+                        <div className="user-info-header">
+                            <h1 id="user-name">{user.username}'s profile</h1>
+                            <div className="button-box">
+                                <Link to="/event-form">
+                                <button className='user-page-button' id="post-event">Create New Event</button>
+                                </Link>
+                                <button className='user-page-button' onClick={() => this.getUserEvents()}>Show My Events</button>
+                                <button className='user-page-button' onClick={() => this.logout()}>Logout</button>
+                            </div>
                         </div>
-                    </div>
-                    <div className="event-container">
-                        {listedEvents}
+                        <div className="event-container">
+                            {listedEvents}
+                        </div>
                     </div>
                 </div>
             )
