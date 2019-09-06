@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import List from '../MapPage/List/List';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import EventsList from '../Map/EventsList/EventsList';
@@ -81,21 +80,25 @@ export default class User extends Component {
                             address={event.address}
                             description={event.description}
                         />
-                        <span><button></button></span>
+                        <span><button id='user-delete-button'>Delete</button></span>
                     </div>
                 )
             })
             return (
                 <div className="user-page">
-                    <h1 id="user-name">{user.username}</h1>
-                    <Link to="/event-form">
-                        <button id="post-event">Create New Event</button>
-                    </Link>
-                    <button onClick={() => this.getUserEvents()}>Show My Events</button>
+                    <div className="user-info-header">
+                        <h1 id="user-name">{user.username}'s profile</h1>
+                        <div className="button-box">
+                            <Link to="/event-form">
+                            <button className='user-page-button' id="post-event">Create New Event</button>
+                            </Link>
+                            <button className='user-page-button' onClick={() => this.getUserEvents()}>Show My Events</button>
+                            <button className='user-page-button' onClick={() => this.logout()}>Logout</button>
+                        </div>
+                    </div>
                     <div className="event-container">
                         {listedEvents}
                     </div>
-                    <button onClick={() => this.logout()}>Logout</button>
                 </div>
             )
         }
