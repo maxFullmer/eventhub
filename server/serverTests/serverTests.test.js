@@ -13,24 +13,112 @@ describe('functions', () => {
 
 // integraton aka E2E tests
 describe('Integration aka E2E tests', () => {
-    describe('integratonTest1', () => {
-        describe('functionForIntegrationTestA', () => {
-            
+    //geocodio API test
+    describe('Get Lat Lng From Address', () => {
+        describe('get Geocodio response', () => {
+            it('should take an address and get a response back from geocodio', () => {
+                const formatted_address = '1109 N Highland St, Arlington VA';
+                expect(serverTests.getGeocodioResponse(formatted_address)).toEqual({
+                    "input": {
+                      "address_components": {
+                        "number": "1109",
+                        "predirectional": "N",
+                        "street": "Highland",
+                        "suffix": "St",
+                        "formatted_street": "N Highland St",
+                        "city": "Arlington",
+                        "state": "VA",
+                        "zip": "22201",
+                        "country": "US"
+                      },
+                      "formatted_address": "1109 N Highland St, Arlington, VA 22201"
+                    },
+                    "results": [
+                      {
+                        "address_components": {
+                          "number": "1109",
+                          "predirectional": "N",
+                          "street": "Highland",
+                          "suffix": "St",
+                          "formatted_street": "N Highland St",
+                          "city": "Arlington",
+                          "county": "Arlington County",
+                          "state": "VA",
+                          "zip": "22201",
+                          "country": "US"
+                        },
+                        "formatted_address": "1109 N Highland St, Arlington, VA 22201",
+                        "location": {
+                          "lat": 38.886665,
+                          "lng": -77.094733
+                        },
+                        "accuracy": 1,
+                        "accuracy_type": "rooftop",
+                        "source": "Virginia GIS Clearinghouse"
+                      }
+                    ]
+                  })
+            })
         })
         
-        describe('functionForIntegrationTestB', () => {
+        describe('pull the lat and lng off of Geocodio Response', () => {
+            it('should return an object containing lat, lng', () => {
+                const geocodioResponse = {
+                    "input": {
+                      "address_components": {
+                        "number": "1109",
+                        "predirectional": "N",
+                        "street": "Highland",
+                        "suffix": "St",
+                        "formatted_street": "N Highland St",
+                        "city": "Arlington",
+                        "state": "VA",
+                        "zip": "22201",
+                        "country": "US"
+                      },
+                      "formatted_address": "1109 N Highland St, Arlington, VA 22201"
+                    },
+                    "results": [
+                      {
+                        "address_components": {
+                          "number": "1109",
+                          "predirectional": "N",
+                          "street": "Highland",
+                          "suffix": "St",
+                          "formatted_street": "N Highland St",
+                          "city": "Arlington",
+                          "county": "Arlington County",
+                          "state": "VA",
+                          "zip": "22201",
+                          "country": "US"
+                        },
+                        "formatted_address": "1109 N Highland St, Arlington, VA 22201",
+                        "location": {
+                          "lat": 38.886665,
+                          "lng": -77.094733
+                        },
+                        "accuracy": 1,
+                        "accuracy_type": "rooftop",
+                        "source": "Virginia GIS Clearinghouse"
+                      }
+                    ]
+                  }
 
+                  expect(serverTests.pullLatLngFromGeocodio(geocodioResponse)).toEqual({
+                    "lat": 38.886665,
+                    "lng": -77.094733
+                  })
+            })
         })
     })
 
-
-    describe('integratonTest2', () => {
+    // cancel event MongoDB test
+    describe('Cancel Event', () => {
         describe('functionForIntegrationTestA', () => {
-            
-        })
-
-        describe('functionForIntegrationTestB', () => {
-
+            it('should delete', () => {
+                const event_id = ""
+                expect(serverTests.deleteEvent(event_id)).toEqual({ "acknowledged" : true, "deletedCount" : 1 })
+            })
         })
     })
 })
