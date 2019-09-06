@@ -40,9 +40,9 @@ module.exports = {
 
         //
     deleteEvent(event_id) {
-        Event.deleteOne({_id: mongoose.Types.ObjectId(event_id)})
+        Event.findByIdAndDelete({_id: event_id})
             .then(response => {
-                return response
+                return response._id
             })
     },
 
