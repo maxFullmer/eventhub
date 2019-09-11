@@ -30,7 +30,6 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "integration-test": "jest --watch server/",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
