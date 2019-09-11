@@ -11,7 +11,7 @@ const Landing = () => {
         <div className="landing-header_text-box">
           <div className="landing-header-container">
           <h1 className="landing-heading-primary">
-            <span className="landing-heading-primary--main">Eventhub</span>
+            <span className="landing-heading-primary--main">EventHub</span>
             <span className="landing-heading-primary--sub">Search, Find, Attend. It's that easy...</span>
           </h1>
           </div>

@@ -50,7 +50,7 @@
     box-sizing: border-box;
     background-color: $color-primary;
     font-family: "Lato", sans-serif;
-    line-height: 1.8;
+    line-height: 1.6;
     color: $color-white;
 
     @include respond(tab-port) {
@@ -59,6 +59,7 @@
 }
 
 .landing-header-container {
+    // width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -71,6 +72,7 @@
 }
 
 .landing-heading-primary {
+    // width: 100vw;
     color: $color-primary;
     text-transform: uppercase;
     backface-visibility: hidden;
@@ -79,10 +81,12 @@
 
     &--main {
         display: block;
+        // align-self: center;
         // margin: 0 auto;
-        font-size: 12rem;
+        font-size: 9rem;
         font-weight: 400;
-        letter-spacing: 6rem;
+        letter-spacing: 3rem;
+        text-align: center;
         margin-top: 10px;
         animation-name: moveInLeft;
         animation-duration: 1s;
@@ -109,6 +113,7 @@
 }
 
 .landing-heading-primary--main {
+    // width: 100vw;
     text-shadow: 0 0 1px $color-white,
         0 0 2px $color-white,
         0 0 3px $color-white,
@@ -123,9 +128,14 @@
         0 0 95px $color-tertiary,
         0 0 120px $color-four,
         0 0 145px $color-four;
+    // margin-right: 25vw;
+    @media (min-width: 200px) and (max-width: 600px) {
+        font-size: 4rem;
+    }
 }
 
 .landing-heading-primary--sub {
+    // width: 100%;
     text-shadow: 0 0 0.50px $color-white,
         0 0 1px $color-white,
         0 0 1.5px $color-white,
@@ -141,17 +151,23 @@
         0 0 8px $color-tertiary,
         0 0 9px $color-four,
         0 0 10px $color-four;
-    margin-left: 70px;
-    margin-top: -25px;
+    margin-left: 25%;
+    margin-top: 25px;
+    margin-right: 20%;
     font-style: bold;
     letter-spacing: 10px;
+    @media (min-width: 200px) and (max-width: 600px) {
+        font-size: 2rem;
+        margin-top: 25px;
+    }
 }
 
 .landing-button-container {
+    width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
 #landing-button-1,
@@ -253,11 +269,10 @@
 #landing-button-1 label,
 #landing-button-2 label,
 #landing-button-3 label {
-    font-size: 20px;
+    font-size: 12px;
 }
 
 .landing-header {
-    height: 85vh;
     background-image:
         linear-gradient(to right bottom,
             rgba(142, 228, 175, 0.80),

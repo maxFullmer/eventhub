@@ -16,9 +16,9 @@ const HamburgerMenu = () => {
 
             <nav className="navigation__nav">
                 <div className="navigation__list">
-                    <li className="navigation__item"><Link to="/main" className="navigation__link">Home</Link></li>
+                    <li className="navigation__item"><Link to="/main" className="navigation__link">Search for Events</Link></li>
                     <li className="navigation__item"><Link to="/map" className="navigation__link">Map View</Link></li>
-                    <li className="navigation__item"><Link to="/user" className="navigation__link">User Events</Link></li>
+                    <li className="navigation__item"><Link to="/user" className="navigation__link">Post Events</Link></li>
                 </div>
             </nav>
         </div>
