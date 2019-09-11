@@ -11,7 +11,7 @@ const { SERVER_PORT, CONNECTION_STRING, SESSION_SECRET } = process.env;
 
 app.use(express.json());
 app.use(express.urlencoded());
-// app.use(express.static( `${__dirname}/../build` ) );
+app.use(express.static( `${__dirname}/../build` ) );
 
 mongoose.connect(CONNECTION_STRING, { useNewUrlParser: true, useCreateIndex: true }).then(() => {
   console.log('connection successful');
