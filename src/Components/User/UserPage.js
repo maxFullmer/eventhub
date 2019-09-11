@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import EventsList from '../Map/EventsList/EventsList';
 import './UserPage.scss';
 
 export default class User extends Component {
@@ -13,8 +12,8 @@ export default class User extends Component {
         }
         this.getUserEvents = this.getUserEvents.bind(this);
         this.getUserSession = this.getUserSession.bind(this);
-        console.log('in user constructor',this.props)
-        console.log('same',props)
+        console.log('in user constructor', this.props)
+        console.log('same', props)
     }
 
     componentDidMount() {
@@ -44,16 +43,16 @@ export default class User extends Component {
         })
     }
 
-    deleteEvent(id){
+    deleteEvent(id) {
         let user_id = this.props.user.user_id
         console.log("this is the req.body: ", user_id, id)
-        axios.post('/api/cancel-event', {user_id: user_id, event_id: id })
-        .then((res) => {
+        axios.post('/api/cancel-event', { user_id: user_id, event_id: id })
+            .then((res) => {
                 console.log("RESPONSE!", res.data)
                 this.props.fetchUserSession()
             }
-        )
-        
+            )
+
     }
 
     logout() {
@@ -75,7 +74,7 @@ export default class User extends Component {
             )
         } else {
             const { events } = this.state
-            const {user} = this.props
+            const { user } = this.props
             const listedEvents = events.map((event, i) => {
                 return (
                     <div key={i}>
@@ -97,7 +96,7 @@ export default class User extends Component {
                             <h1 id="user-name">{user.username}'s profile</h1>
                             <div className="button-box">
                                 <Link to="/event-form">
-                                <button className='user-page-button' id="post-event">Create New Event</button>
+                                    <button className='user-page-button' id="post-event">Create New Event</button>
                                 </Link>
                                 <button className='user-page-button' onClick={() => this.getUserEvents()}>Show My Events</button>
                                 <button className='user-page-button' onClick={() => this.logout()}>Logout</button>

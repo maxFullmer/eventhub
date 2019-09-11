@@ -16,7 +16,7 @@ class RegisterForm extends Component {
 
 
     register(e) {
-        // e.preventDefault();
+        e.preventDefault();
         const { username, email, password } = this.state;
         axios.post('/api/register', {
             username: username,
@@ -37,85 +37,48 @@ class RegisterForm extends Component {
     render() {
         const { username, email, password } = this.state;
 
-        const titleStyle = {
-            fontFamily: "'Lato', sans- serif",
-            textTransform: 'uppercase',
-            color: 'rgb(211, 211, 211)',
-            fontSize: '40px',
-            fontWeight: 700,
-            letterSpacing: '3px',
-            marginLeft: '37%'
-        };
-
-        const subTitleStyle = {
-            fontFamily: "'Lato', sans- serif",
-            fontSize: '28px',
-            color: 'rgb(211, 211, 211)',
-            marginBottom: '12px',
-            marginTop: '14px',
-            fontWeight: 700,
-            letterSpacing: '1px',
-            textTransform: 'uppercase'
-        };
-
-        const buttonStyle = {
-            background: 'rgb(5, 56, 107)',
-            color: 'whitesmoke',
-            letterSpacing: '1px',
-            fontSize: '28px',
-            fontWeight: 600,
-            fontFamily: "'Lato', sans- serif",
-            textTransform: 'uppercase',
-            borderRadius: '10rem',
-            width: '55%',
-            height: '60px',
-            margin: '0 auto'
-        };
-
-        const inputStyle = {
-            fontSize: '24px',
-            marginBottom: '20px',
-            backgroundColor: 'rgb(211, 211, 211)'
-        }
-
-        const emailInputStyle = {
-            fontSize: '24px',
-            fontFamily: "'Lato', sans- serif",
-            backgroundColor: 'rgb(211, 211, 211)'
-        }
         return (
             <div id="register-page">
-                <div className="col-lg-6 mx-auto">
-                    <div id="register-card" className="card">
-                        <div className="card-header">
-                            <h4 style={titleStyle}>Register</h4>
-                        </div>
-                        <div className="card-body">
-                            <div className="form-group-lg">
-                                <label className="username-label" for="email" style={subTitleStyle}>username:</label>
-                                <input style={emailInputStyle} type="text" className="form-control" onChange={(e) => this.universalChangeHandler('username', e.target.value)} value={username} />
-                            </div>
-                            <div className="form-group-lg">
-                                <label className="email-label" for="email" style={subTitleStyle}>Email:</label>
-                                <input style={emailInputStyle}
-                                    type="email"
-                                    className="form-control"
-                                    onChange={(e) => this.universalChangeHandler('email', e.target.value)}
-                                    value={email}
-                                />
-                            </div>
-                            <div className="form-group-lg">
-                                <label className="password-label" for="password" style={subTitleStyle}>Password:</label>
-                                <input style={inputStyle}
-                                    type="password"
-                                    className="form-control"
-                                    onChange={(e) => this.universalChangeHandler('password', e.target.value)}
-                                    value={password}
-                                />
-                            </div>
-                            <input type="Submit" onClick={() => this.register()} className="btn btn-block" style={buttonStyle} />
-                        </div>
-                    </div>
+                <div className="register-box">
+                    <h2>Register</h2>
+
+
+                    <form className="register-form">
+
+                        <p className="register-p">Username:</p>
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder="Username"
+                            onChange={(e) => this.universalChangeHandler('username', e.target.value)}
+                            value={username}
+                        />
+
+                        <p className="register-p">Email:</p>
+                        <input
+                            type="email"
+                            className="form-control"
+                            placeholder="E-mail Address"
+                            onChange={(e) => this.universalChangeHandler('email', e.target.value)}
+                            value={email}
+                        />
+
+                        <p className="register-p">Password:</p>
+                        <input
+                            type="password"
+                            className="form-control"
+                            placeholder="Password"
+                            onChange={(e) => this.universalChangeHandler('password', e.target.value)}
+                            value={password}
+                        />
+
+                        <input
+                            type="submit"
+                            name="sbmt"
+                            onClick={(e) => this.register(e)}
+                            style={{ text: "rgb(142, 228, 175)", fontSize: "24px" }}
+                        />
+                    </form>
                 </div>
             </div >
         );

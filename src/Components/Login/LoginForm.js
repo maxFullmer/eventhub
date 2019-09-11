@@ -19,11 +19,11 @@ class LoginForm extends Component {
         const { email, password } = this.state;
         axios.post('/api/login', { email: email, password: password })
             .then((res) => {
-                console.log("login form ",res.data)
+                console.log("login form ", res.data)
                 this.props.fetchUserSession(res.data)
                 localStorage.setItem("accredited", "true")
                 this.props.history.push('/user')
-            }).catch( err => alert(err))
+            }).catch(err => alert(err))
     }
 
     universalChangeHandler(property, value) {
@@ -37,84 +37,43 @@ class LoginForm extends Component {
             email,
             password } = this.state;
 
-        const titleStyle = {
-            fontFamily: "'Lato', sans- serif",
-            textTransform: 'uppercase',
-            color: 'rgb(211, 211, 211)',
-            fontSize: '40px',
-            fontWeight: 700,
-            letterSpacing: '3px',
-            marginLeft: '35%'
-        };
-
-        const subTitleStyle = {
-            fontFamily: "'Lato', sans- serif",
-            fontSize: '28px',
-            color: 'rgb(211, 211, 211)',
-            marginBottom: '12px',
-            marginTop: '14px',
-            fontWeight: 700,
-            letterSpacing: '1px',
-            textTransform: 'uppercase'
-        };
-
-        const buttonStyle = {
-            background: 'rgb(5, 56, 107)',
-            color: 'whitesmoke',
-            letterSpacing: '1px',
-            fontSize: '22px',
-            fontWeight: 600,
-            fontFamily: "'Lato', sans- serif",
-            textTransform: 'uppercase',
-            borderRadius: '10rem',
-            width: '50%',
-            margin: '0 auto'
-        };
-
-        const inputStyle = {
-            fontSize: '24px',
-            marginBottom: '20px',
-            backgroundColor: 'rgb(211, 211, 211)'
-        }
-
-        const emailInputStyle = {
-            fontSize: '24px',
-            fontFamily: "'Lato', sans- serif",
-            backgroundColor: 'rgb(211, 211, 211)'
-        }
-
         return (
             <div id="login-page">
-                <div className="col-lg-6 mx-auto">
-                    <div id="login-card" className="card">
-                        <div className="card-header">
-                            <h4 style={titleStyle}>User Login</h4>
-                        </div>
-                        <div className="card-body">
 
-                            <div className="form-group-lg">
-                                <label className="email-label" htmlFor="email" style={subTitleStyle}>Email:</label>
-                                <input style={emailInputStyle}
-                                    type="email"
-                                    className="form-control"
-                                    onChange={(e) => this.universalChangeHandler('email', e.target.value)}
-                                    value={email}
-                                />
-                            </div>
-                            <div className="form-group-lg">
-                                <label className="password-label" htmlFor="password" style={subTitleStyle}>Password:</label>
-                                <input style={inputStyle}
-                                    type="password"
-                                    className="form-control"
-                                    onChange={(e) => this.universalChangeHandler('password', e.target.value)}
-                                    value={password}
-                                />
-                            </div>
-                            <input type="Submit" onClick={(e) => this.login(e)} className="btn btn-block" style={buttonStyle} />
-                        </div>
-                    </div>
+                <div className="login-box">
+                    <h2>Login</h2>
+
+                    <form className="login-form">
+
+                        <p className="login-p">E-mail Address:</p>
+                        <input
+                            type="email"
+                            className="login-email"
+                            placeholder="E-mail Address"
+                            onChange={(e) => this.universalChangeHandler('email', e.target.value)}
+                            value={email}
+                        />
+
+                        <p className="login-p">Password:</p>
+                        <input
+                            type="password"
+                            className="login-password"
+                            placeholder="Password"
+                            onChange={(e) => this.universalChangeHandler('password', e.target.value)}
+                            value={password}
+                        />
+
+                        <input
+                            type="submit"
+                            name="sbmt"
+                            onClick={(e) => this.login(e)}
+                            style={{ text: "rgb(142, 228, 175)", fontSize: "24px" }}
+                        />
+
+                    </form>
                 </div>
             </div>
+
         );
     }
 }
