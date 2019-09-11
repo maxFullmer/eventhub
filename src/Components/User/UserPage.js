@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './UserPage.scss';
+import EventsList from '../Map/EventsList/EventsList'
 
 export default class User extends Component {
     constructor(props) {
@@ -12,8 +13,6 @@ export default class User extends Component {
         }
         this.getUserEvents = this.getUserEvents.bind(this);
         this.getUserSession = this.getUserSession.bind(this);
-        console.log('in user constructor', this.props)
-        console.log('same', props)
     }
 
     componentDidMount() {
@@ -26,7 +25,6 @@ export default class User extends Component {
 
     getUserSession() {
         axios.get('/api/user_session').then(res => {
-            console.log("response: ", res);
             this.setState({
                 user: res.data,
                 loading: false
@@ -36,7 +34,6 @@ export default class User extends Component {
 
     getUserEvents() {
         axios.post(`/api/get-my-events`, { userEvents: this.props.user.userEvents }).then(res => {
-            console.log("itworked")
             this.setState({
                 events: res.data,
             })
@@ -45,10 +42,8 @@ export default class User extends Component {
 
     deleteEvent(id) {
         let user_id = this.props.user.user_id
-        console.log("this is the req.body: ", user_id, id)
         axios.post('/api/cancel-event', { user_id: user_id, event_id: id })
             .then((res) => {
-                console.log("RESPONSE!", res.data)
                 this.props.fetchUserSession()
             }
             )
@@ -64,8 +59,6 @@ export default class User extends Component {
     }
 
     render() {
-        console.log(this.state);
-        console.log(this.props.user);
         if (this.state.loading) {
             return (
                 <div>
