@@ -48,5 +48,9 @@ setInterval(() => {
   // Use Mongo methods to delete events that are before the current Date
 }, deleteInterval)
 
+const path = require('path')
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+})
 
 app.listen(SERVER_PORT, () => console.log(`server up and running on ${SERVER_PORT}`));
