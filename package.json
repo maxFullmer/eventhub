@@ -6,7 +6,7 @@
   "proxy": "http://localhost:4020",
   "dependencies": {
     "@wojtekmaj/react-daterange-picker": "^2.4.0",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "bcrypt": "^3.0.6",
     "bootstrap": "^4.3.1",
     "dotenv": "^8.1.0",
